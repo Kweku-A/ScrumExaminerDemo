@@ -1,10 +1,9 @@
-package com.kweku.armah.core.utilities
+package com.kweku.armah.core.utilities.files
 
 import android.content.Context
 import com.kweku.armah.core.domain.model.Answer
 import com.kweku.armah.core.domain.model.Question
 import dagger.hilt.android.qualifiers.ApplicationContext
-import java.util.stream.Collectors.toList
 import javax.inject.Inject
 
 class FileHelperImpl @Inject constructor(

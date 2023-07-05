@@ -1,4 +1,4 @@
-package com.kweku.armah.core.utilities
+package com.kweku.armah.core.utilities.files
 
 import androidx.annotation.RawRes
 import com.kweku.armah.core.domain.model.Question
