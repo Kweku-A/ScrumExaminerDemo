@@ -67,6 +67,13 @@ dependencies {
 }
 
 dependencies {
+    // project dependencies - added for dependency injection to work
+    implementation(project(":professionalscrumproductowner:presentation"))
+    implementation(project(":professionalscrumproductowner:domain"))
+    implementation(project(":professionalscrumproductowner:data"))
+}
+
+dependencies {
     implementation(project(":core:data"))
     implementation(project(":core:domain"))
     implementation(project(":core:utilities"))

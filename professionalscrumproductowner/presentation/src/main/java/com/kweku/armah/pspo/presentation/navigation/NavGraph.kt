@@ -1,37 +1,37 @@
-package com.kweku.armah.psm.presentation.navigation
+package com.kweku.armah.pspo.presentation.navigation
 
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.kweku.armah.psm.presentation.screens.PsdIntroScreenRoute
 import com.kweku.armah.psm.presentation.screens.QuizScreenRoute
 import com.kweku.armah.psm.presentation.screens.ReadyToStartScreenRoute
 import com.kweku.armah.psm.presentation.screens.ResultScreenRoute
+import com.kweku.armah.pspo.presentation.screens.PspoIntroScreenRoute
 
-fun NavGraphBuilder.addPSMIntroScreenRoute(navigateTo: () -> Unit, navigateBack: () -> Unit) {
-    composable(route = ProfessionalScrumMasterDestinations.IntroScreenDestination.toString()) {
-        PsdIntroScreenRoute(navigateTo = navigateTo, navigateBack = navigateBack)
+fun NavGraphBuilder.addPSPOIntroScreenRoute(navigateTo: () -> Unit, navigateBack: () -> Unit) {
+    composable(route = ProfessionalScrumProductOwnerDestinations.IntroScreenDestination.toString()) {
+        PspoIntroScreenRoute(navigateTo = navigateTo, navigateBack = navigateBack)
     }
 }
 
-fun NavGraphBuilder.addPSMReadyToStartScreenRoute(navigateTo: () -> Unit) {
-    composable(route = ProfessionalScrumMasterDestinations.ReadyToStartScreenDestination.toString()) {
+fun NavGraphBuilder.addPSPOReadyToStartScreenRoute(navigateTo: () -> Unit) {
+    composable(route = ProfessionalScrumProductOwnerDestinations.ReadyToStartScreenDestination.toString()) {
         ReadyToStartScreenRoute(navigateTo = navigateTo)
     }
 }
 
 const val REVIEW_PATH = "shouldReview"
-fun NavGraphBuilder.addPSMQuizScreenRoute(
+fun NavGraphBuilder.addPSPOQuizScreenRoute(
     onFinishQuiz: () -> Unit,
     navigateToHome: () -> Unit = {},
 ) {
-    composable(route = ProfessionalScrumMasterDestinations.QuizScreenDestination.toString()) {
+    composable(route = ProfessionalScrumProductOwnerDestinations.QuizScreenDestination.toString()) {
         QuizScreenRoute(onFinishQuiz = onFinishQuiz)
     }
 
     composable(
-        route = "${ProfessionalScrumMasterDestinations.QuizScreenDestination}/{$REVIEW_PATH}",
+        route = "${ProfessionalScrumProductOwnerDestinations.QuizScreenDestination}/{$REVIEW_PATH}",
         arguments = listOf(
             navArgument(name = REVIEW_PATH) {
                 defaultValue = false
@@ -48,11 +48,11 @@ fun NavGraphBuilder.addPSMQuizScreenRoute(
     }
 }
 
-fun NavGraphBuilder.addPSMResultsScreenRoute(
+fun NavGraphBuilder.addPSPOResultsScreenRoute(
     navigateToHome: () -> Unit,
     navigateToReview: () -> Unit,
 ) {
-    composable(route = ProfessionalScrumMasterDestinations.ResultScreenDestination.toString()) {
+    composable(route = ProfessionalScrumProductOwnerDestinations.ResultScreenDestination.toString()) {
         ResultScreenRoute(navigateToHome = navigateToHome, navigateToReview = navigateToReview)
     }
 }

@@ -14,6 +14,11 @@ import com.kweku.armah.psm.presentation.navigation.addPSMIntroScreenRoute
 import com.kweku.armah.psm.presentation.navigation.addPSMQuizScreenRoute
 import com.kweku.armah.psm.presentation.navigation.addPSMReadyToStartScreenRoute
 import com.kweku.armah.psm.presentation.navigation.addPSMResultsScreenRoute
+import com.kweku.armah.pspo.presentation.navigation.ProfessionalScrumProductOwnerDestinations
+import com.kweku.armah.pspo.presentation.navigation.addPSPOIntroScreenRoute
+import com.kweku.armah.pspo.presentation.navigation.addPSPOQuizScreenRoute
+import com.kweku.armah.pspo.presentation.navigation.addPSPOReadyToStartScreenRoute
+import com.kweku.armah.pspo.presentation.navigation.addPSPOResultsScreenRoute
 import com.kweku.armah.scrumexams.home.destination.HomeDestinations
 import com.kweku.armah.scrumexams.home.destination.addHomeScreenRoute
 import com.kweku.armah.scrumexams.home.enums.HomeButtons
@@ -43,7 +48,7 @@ fun AppNavHost(modifier: Modifier = Modifier) {
                 }
 
                 is HomeButtons.PSPO -> {
-                    ProfessionalScrumDeveloperDestinations.IntroScreenDestination.toString()
+                    ProfessionalScrumProductOwnerDestinations.IntroScreenDestination.toString()
                 }
             }
             navController.navigate(destination)
@@ -57,7 +62,7 @@ fun AppNavHost(modifier: Modifier = Modifier) {
 
         addPSDIntroScreenRoute(navigateTo = {
             navController.navigate(ProfessionalScrumDeveloperDestinations.ReadyToStartScreenDestination.toString())
-        },navigateBack = {
+        }, navigateBack = {
             navController.navigateUp()
         })
 
@@ -127,6 +132,47 @@ fun AppNavHost(modifier: Modifier = Modifier) {
         addPSMResultsScreenRoute(navigateToReview = {
             // navigate back to questions for review
             navController.navigate("${ProfessionalScrumMasterDestinations.QuizScreenDestination}/true")
+        }, navigateToHome = {
+            navController.navigate(HomeDestinations.HomeScreenDestination.toString()) {
+                popUpTo(navController.graph.id) {
+                    inclusive = true
+                }
+            }
+        })
+
+        // PSPO
+
+        addPSPOIntroScreenRoute(navigateTo = {
+            navController.navigate(ProfessionalScrumProductOwnerDestinations.ReadyToStartScreenDestination.toString())
+        }, navigateBack = {
+            navController.navigateUp()
+        })
+
+        addPSPOReadyToStartScreenRoute(navigateTo = {
+            navController.navigate(ProfessionalScrumProductOwnerDestinations.QuizScreenDestination.toString()) {
+                popUpTo(navController.graph.id) {
+                    inclusive = true
+                }
+            }
+        })
+
+        addPSPOQuizScreenRoute(onFinishQuiz = {
+            navController.navigate(ProfessionalScrumProductOwnerDestinations.ResultScreenDestination.toString()) {
+                popUpTo(navController.graph.id) {
+                    inclusive = true
+                }
+            }
+        }, navigateToHome = {
+            navController.navigate(HomeDestinations.HomeScreenDestination.toString()) {
+                popUpTo(navController.graph.id) {
+                    inclusive = true
+                }
+            }
+        })
+
+        addPSPOResultsScreenRoute(navigateToReview = {
+            // navigate back to questions for review
+            navController.navigate("${ProfessionalScrumProductOwnerDestinations.QuizScreenDestination}/true")
         }, navigateToHome = {
             navController.navigate(HomeDestinations.HomeScreenDestination.toString()) {
                 popUpTo(navController.graph.id) {
