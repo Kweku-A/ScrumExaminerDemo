@@ -70,7 +70,6 @@ dependencies {
     implementation(project(":core:data"))
     implementation(project(":core:domain"))
     implementation(project(":core:utilities"))
-    implementation(project(":common:composables"))
     implementation(project(":core:resources"))
 }
 
