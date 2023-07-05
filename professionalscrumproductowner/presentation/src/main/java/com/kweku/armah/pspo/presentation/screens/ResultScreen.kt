@@ -1,4 +1,4 @@
-package com.kweku.armah.psm.presentation.screens
+package com.kweku.armah.pspo.presentation.screens
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.padding
