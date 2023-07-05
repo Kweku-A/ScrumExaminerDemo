@@ -3,6 +3,7 @@ package com.kweku.armah.psm.data.database.dao
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.kweku.armah.core.domain.model.Answer
 import com.kweku.armah.psm.data.database.enitities.PsmQuizEntity
@@ -18,7 +19,7 @@ interface PsmQuizDao {
     @Query("SELECT * FROM psm_quiz WHERE id IN (:ids)")
     fun loadAllByIds(ids: IntArray): List<PsmQuizEntity>
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(users: List<PsmQuizEntity>)
 
     @Delete

@@ -3,6 +3,7 @@ package com.kweku.armah.pspo.data.database.dao
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.kweku.armah.pspo.data.database.enitities.PspoQuestionEntity
 
@@ -17,7 +18,7 @@ interface PspoQuestionsDao {
     @Query("SELECT * FROM pspo_questions WHERE id IN (:ids)")
     fun loadAllByIds(ids: IntArray): List<PspoQuestionEntity>
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(users: List<PspoQuestionEntity>)
 
     @Delete
