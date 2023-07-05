@@ -8,6 +8,8 @@ import com.kweku.armah.psd.data.database.dao.PsdQuestionsDao
 import com.kweku.armah.psd.data.database.dao.PsdQuizDao
 import com.kweku.armah.psm.data.database.dao.PsmQuestionsDao
 import com.kweku.armah.psm.data.database.dao.PsmQuizDao
+import com.kweku.armah.pspo.data.database.dao.PspoQuestionsDao
+import com.kweku.armah.pspo.data.database.dao.PspoQuizDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -56,5 +58,17 @@ object DatabaseModule {
     @Provides
     fun providePsmQuizDao(appDatabase: AppDatabase): PsmQuizDao {
         return appDatabase.psmQuizDao()
+    }
+
+    @Singleton
+    @Provides
+    fun providePspoQuestionsDao(appDatabase: AppDatabase): PspoQuestionsDao {
+        return appDatabase.pspoQuestionsDao()
+    }
+
+    @Singleton
+    @Provides
+    fun providePspoQuizDao(appDatabase: AppDatabase): PspoQuizDao {
+        return appDatabase.pspoQuizDao()
     }
 }

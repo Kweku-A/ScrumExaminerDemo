@@ -12,9 +12,19 @@ import com.kweku.armah.psm.data.database.dao.PsmQuestionsDao
 import com.kweku.armah.psm.data.database.dao.PsmQuizDao
 import com.kweku.armah.psm.data.database.enitities.PsmQuestionEntity
 import com.kweku.armah.psm.data.database.enitities.PsmQuizEntity
+import com.kweku.armah.pspo.data.database.dao.PspoQuestionsDao
+import com.kweku.armah.pspo.data.database.dao.PspoQuizDao
+import com.kweku.armah.pspo.data.database.enitities.PspoQuestionEntity
+import com.kweku.armah.pspo.data.database.enitities.PspoQuizEntity
 import javax.inject.Singleton
 
-@Database(entities = [PsdQuestionEntity::class, PsdQuizEntity::class, PsmQuestionEntity::class, PsmQuizEntity::class], version = 1)
+@Database(
+    entities = [
+        PsdQuestionEntity::class, PsdQuizEntity::class, PsmQuestionEntity::class,
+        PsmQuizEntity::class, PspoQuestionEntity::class, PspoQuizEntity::class,
+    ],
+    version = 1,
+)
 @TypeConverters(AnswerConverter::class)
 @Singleton
 abstract class AppDatabase : RoomDatabase() {
@@ -23,4 +33,7 @@ abstract class AppDatabase : RoomDatabase() {
 
     abstract fun psmQuestionsDao(): PsmQuestionsDao
     abstract fun psmQuizDao(): PsmQuizDao
+
+    abstract fun pspoQuestionsDao(): PspoQuestionsDao
+    abstract fun pspoQuizDao(): PspoQuizDao
 }

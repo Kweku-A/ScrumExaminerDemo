@@ -40,6 +40,7 @@ dependencies {
 
     implementation(project(":professionalsoftwaredeveloper:data"))
     implementation(project(":professionalscrummaster:data"))
+    implementation(project(":professionalscrumproductowner:data"))
     implementation(project(":core:domain"))
     implementation(project(":core:utilities"))
     implementation(project(":core:resources"))
