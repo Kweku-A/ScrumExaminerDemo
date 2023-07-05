@@ -26,3 +26,4 @@ This is a feature folder containing the code related to PSD. It is divided into 
 - Domain: Domain layer implementations (Core to the feature)
 
 The app is still being developed and will be refactored accordingly
+- No tests have been added
