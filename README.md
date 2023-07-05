@@ -25,5 +25,7 @@ This is a feature folder containing the code related to PSD. It is divided into 
 ### App
 The app module serves as the starting/connecting point for all features
 
-The app is still being developed and will be refactored accordingly
+## Note
+- The app is still being developed and will be refactored accordingly
 - No tests have been added
+- Whatever you don't see is not there :)
