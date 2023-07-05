@@ -7,9 +7,6 @@ The project is developed using Kotlin and Jetpack Compose.
 
 Modules have been grouped in folders
 
-### Common
-This contains common composables used across features (i.e. the presentation layers)
-
 ### Core
 This contains modules and logic that is core to the application or reused by different features
 
@@ -24,6 +21,9 @@ This is a feature folder containing the code related to PSD. It is divided into 
 - Presentation: Contains UI related implementations
 - Data: Contains the data layer implementaions
 - Domain: Domain layer implementations (Core to the feature)
+
+### App
+The app module serves as the starting/connecting point for all features
 
 The app is still being developed and will be refactored accordingly
 - No tests have been added
