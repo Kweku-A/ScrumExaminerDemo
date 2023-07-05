@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="number_of_questions">Number of questions: %1$d</string>
+    <string name="has_a_time_limit_of">Has a time limit of %1$d minutes</string>
+    <string name="must_be_finished_in_one_sitting_you_cannot_save_and_finish_later">Must be finished in one sitting. You cannot save and finish later.</string>
+    <string name="questions_displayed_per_page_1">Questions displayed per page: 1</string>
+    <string name="will_allow_you_to_go_back_and_change_your_answers">Will allow you to go back and change your answers.</string>
+    <string name="has_a_pass_mark_of">Has a pass mark of: %1$d percent</string>
+    <string name="intro_instructions">Instructions</string>
+    <string name="btn_continue">Continue</string>
+    <string name="back_to_home">Back to Home</string>
+    <string name="bulletin">•</string>
+    <string name="welcome_to_the_exams">Welcome to the %1$s Exams</string>
+    <string name="professional_scrum_developer">Professional Scrum Developer</string>
+    <string name="end_review">End Review</string>
+    <string name="end_quiz">End Quiz</string>
+    <string name="this_will_submit_your_answers_and_give_final_score">This will submit your answers and give final score</string>
+    <string name="cancel">Cancel</string>
+    <string name="finish">Finish</string>
+    <string name="previous">Previous</string>
+    <string name="next">Next</string>
+    <string name="time_left">Time left:  %1$s</string>
+    <string name="ready_to_start">Ready to start?</string>
+    <string name="click_start_whenever_you_are_ready">Click start whenever you are ready</string>
+    <string name="start">Start</string>
+    <string name="your_final_score_is">Your final score is...</string>
+    <string name="review_quiz">Review Quiz</string>
+    <string name="return_to_home">Return to Home</string>
+
+    <string name="professional_scrum_master">Professional Scrum Master</string>
+</resources>

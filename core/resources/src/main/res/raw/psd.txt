@@ -1,0 +1,133 @@
+### When can Product Backlog Refinement occur?
+
+- [ ] Only during Sprint Planning.
+- [x] Anytime during the Sprint.
+- [ ] Only during Refinement meetings planned by the Product Owner.
+- [ ] Before Sprint Planning.
+
+**[END QUESTION]**
+
+### What would NOT be considered Refactoring?
+
+- [ ] Reordering method parameters to improve readability.
+- [ ] Extracting interfaces.
+- [ ] Renaming things to be more logical.
+- [x] Changing external interfaces or APIS.
+- [ ] Extracting methods.
+
+### Which three of the following are feedback loops in Scrum?
+
+- [x] Daily Scrum.
+- [ ] Release Planning.
+- [x] Sprint Review.
+- [ ] Refinement Meeting.
+- [x] Sprint Retrospective.
+
+**[END QUESTION]**
+
+### What are the typical roles when practicing Pair Programming?
+
+- [ ] Product Owner and Developer.
+- [ ] Business Analyst and Developer.
+- [ ] Tester and Developer.
+- [x] Driver and Navigator.
+- [ ] Frontend and Backend.
+
+**[END QUESTION]**
+
+### True or False: When multiple teams work together on the same Product, each team should maintain a separate Product Backlog.
+
+- [ ] True.
+- [x] False.
+
+**[END QUESTION]**
+
+### What is the primary purpose of Refactoring?
+
+- [ ] Ensuring that all factors are constantly aligned.
+- [ ] Removing all bugs that were found during Regression Tests.
+- [x] Making sure that the code is readable and maintainable.
+- [ ] Creating better technical documentation.
+
+**[END QUESTION]**
+
+
+### Which of the following are NOT metrics of Code Quality? (choose all that apply)
+
+- [ ] Class Coupling.
+- [x] Code Coverage.
+- [x] Cycle Time per Feature.
+- [ ] Cyclomatic Complexity.
+- [ ] Depth of Inheritance.
+
+**[END QUESTION]**
+
+### You are on a Scrum Team that is enhancing an existing Product. Which is the LEAST useful piece of documentation you want to have at your disposal?
+
+- [ ] Acceptance Tests.
+- [ ] Detailed designs.
+- [x] The full history of retrospective plans and lessons learned.
+- [ ] Well-structured and named code.
+
+**[END QUESTION]**
+
+### True or False: Test Driven Development is a predictable way to develop working, well-organized code?
+
+- [ ] True.
+- [x] False.
+
+### Cyclomatic Complexity is a metric for: (choose the best answer)
+
+- [ ] Assessing if code is written in as few lines as possible.
+- [ ] A measurement for complexity based on the number of people involved.
+- [ ] Determining the number of unit tests required to ensure correctness.
+- [ ] Demonstrating code is well-structured and cleanly implemented.
+- [x] Measuring branching structures and nesting levels in code.
+
+**[END QUESTION]**
+
+### The Developers should have all the skills needed to: (choose the best answer)
+
+- [ ] Complete the project as estimated when the date and cost are committed to the Product Owner.
+- [x] Turn the Product Backlog items they select into an Increment of useful and valuable product functionality.
+- [ ] Do all of the development work, except for specialized testing that requires additional tools and environments.
+
+**[END QUESTION]**
+
+### Which statement best describes Scrum? (choose the best answer)
+
+- [x] A framework for creating complex products in complex environments.
+- [ ] A defined and predictive process that conforms to the principles of Scientific Management.
+- [ ] A complete methodology that defines how to develop software.
+- [ ] A cookbook that defines best practices for software development.
+
+**[END QUESTION]**
+
+### The timebox for a Daily Scrum is? (choose the best answer)
+
+- [x] 15 minutes.
+- [ ] 15 minutes for a 4-week sprint. For shorter Sprints it is usually shorter.
+- [ ] Two minutes per person.
+- [ ] 4 hours.
+- [ ] The same time of day every day.
+
+**[END QUESTION]**
+
+### The three pillars of empiricism are: (choose the best answer)
+
+- [ ] Respect For People, Kaizen, Eliminating Waste.
+- [ ] Planning, Inspection, Adaptation.
+- [ ] Planning, Demonstration, Retrospective.
+- [x] Inspection, Transparency, Adaptation.
+- [ ] Transparency, Eliminating Waste, Kaizen.
+
+**[END QUESTION]**
+
+### What is the typical size for a Scrum Team? (choose the best answer)
+
+- [x] 10 or fewer.
+- [ ] Minimum of 7.
+- [ ] 7 plus or minus 2.
+- [ ] 9.
+
+**[END QUESTION]**

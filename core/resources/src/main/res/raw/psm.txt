@@ -1,0 +1,174 @@
+
+### You have just been hired by a company new to Scrum. Your management has assigned you to be the Scrum Master of six new Scrum Teams. These teams will build one product. Select two conditions you should strive for in this scenario. (choose two)
+
+- [ ] There should be six Product Owners, one for each Scrum Team.
+- [ ] There should be six Product Owners, reporting to a chief Product Owner.
+- [x] The product has one Product Backlog.
+- [ ] Each Scrum Team should have a separate Product Backlog.
+- [x] There should be only one Product Owner.
+
+**[END QUESTION]**
+
+### A Scrum Team has been working on a product for nine Sprints. A new Product Owner comes in, understanding he is accountable for the Product Backlog. However, he is unsure about his responsibilities. Which two activities are part of the Product Owner role according to Scrum? (choose two)
+
+- [x] Ensuring that the most valuable functionality is produced first, at all times.
+- [x] Interacting with stakeholders.
+- [ ] Providing the Development Team with detailed specifications.
+- [ ] Describing features as Use Cases.
+- [ ] Creating detailed functional test cases.
+
+**[END QUESTION]**
+
+### User documentation is part of your definition of "Done". However, there aren't enough technical writers for all teams. Your Development Team doesn't have a technical writer. What should you do?
+
+- [ ] Form a separate team of technical writers that will work on an on-demand basis for the various Product Owners. Work order will be first in, first out.
+- [ ] Let the user documentation remain undone and accumulate until after the last development Sprint. It will then be done by any available technical writers.
+- [ ] Wait until you have a technical writer on your Development Team to take care of this.
+- [x] Your Development Team is still responsible for creating user documentation. In this case, the Development Team members will write it.
+
+**[END QUESTION]**
+
+### You are the Scrum Master for four Scrum Teams working from the same Product Backlog. Several of the developers come to you complaining that work identified for the upcoming two Sprints will require full-time commitment from a technical specialist who is external to the teams. What are two key concerns for the Scrum Master to take into account in this situation? (choose two)
+
+- [ ] The desire to maintain a stable velocity.
+- [x] The benefit of Development Teams figuring out a solution for themselves.
+- [ ] The need to have enough work to keep all Development Team members busy.
+- [x] The ability of the Development Teams to produce integrated Increments.
+
+**[END QUESTION]**
+
+### The Product Backlog is ordered by:
+
+- [x] The Product Owner with the most valuable items placed at the top.
+- [ ] Risk, where safer items are at the top, and riskier items are at the bottom.
+- [ ] Items are randomly arranged.
+- [ ] Size, where small items are at the top and large items are at the bottom.
+
+**[END QUESTION]**
+
+### What happens if the Development Team cannot complete its work by the end of the Sprint?
+
+- [ ]  The Sprint is extended and future Sprints use this new duration.
+- [x] The Sprint length holds and the Development Team continuously learns what is actually possible to do within a Sprint of this length.
+- [ ] The Sprint is extended temporarily. Lessons are taken to ensure it doesn't happen again.
+
+**[END QUESTION]**
+
+
+
+### A member of the Development Team takes the Scrum Master aside to express his concerns about data security issues. What should the Scrum Master do?
+
+- [ ] Add security to the definition of "Done".
+- [ ] Tell the Product Owner to stop further development of features until the issues are fixed.
+- [ ] Create a Product Backlog item for security.
+- [ ] Go check with the testers.
+- [x] Ask the person to share the issue with the team as soon as possible.
+
+**[END QUESTION]**
+
+
+### What is the best suited structure for Development Teams in order to produce integrated Increments? (choose the best answer)
+
+- [ ] Each Development Team works only one technical layer of the system (e.g. GUI, database, middle tier, interfaces).
+- [x] Each Development Team develops functionality from beginning to end throughout all technical layers.
+
+**[END QUESTION]**
+
+
+
+### True or False: When multiple teams work together on the same product, each team should maintain a separate Product Backlog.
+
+- [ ] True.
+- [x] False.
+
+**[END QUESTION]**
+
+
+### True or False: The Product Owner makes sure the team selects enough from the Product Backlog for a Sprint to satisfy the stakeholders.
+
+- [ ] Yes
+- [x] False
+
+**[END QUESTION]**
+
+### Which statement best describes the Sprint Review? (choose the best answer)
+
+- [ ] It is used to congratulate the Development Team if it did what it forecast, or to punish the Development Team if it failed to meet its forecast.
+- [ ] It is a demo at the end of the Sprint for everyone in the organization to check on the work done.
+- [ ] It is a mechanism to control the Development Team's activities during a Sprint.
+- [x] It is when the Scrum Team and stakeholders inspect the outcome of a Sprint and figure out what to do next.
+
+**[END QUESTION]**
+
+
+### The Product Owner determines how many Product Backlog items the Development Team selects for a Sprint. (choose the best answer)
+
+- [x] False.
+- [ ] True, accordingly to what was committed to the stakeholders.
+- [ ] True, but only after confirmation by the resource manager that the Team has enough capacity.
+- [ ] True.
+- [ ] False, the Scrum Master does that.
+- [ ] False, capacity and commitment are the Project manager's responsibility.
+
+**[END QUESTION]**
+
+
+### During a Sprint Retrospective, for what is the Product Owner responsible?
+
+- [x] Participating as a Scrum Team member.
+- [ ] Summarizing and reporting the discussions to the stakeholders that he/she represents in the Scrum Team.
+- [ ] Capturing requirements for the Product Backlog.
+- [ ] The Product Owner should not take part in Sprint Retrospectives.
+
+**[END QUESTION]**
+
+### The three pillars of empiricism are:
+
+- [ ] Respect For People, Kaizen, Eliminating Waste.
+- [ ] Planning, Inspection, Adaptation
+- [ ] Planning, Demonstration, Retrospective
+- [x] Inspection, Transparency, Adaptation
+- [ ] Transparency, Eliminating Waste, Kaizen.
+
+**[END QUESTION]**
+
+### What does it mean to say that an event has a timebox?
+
+- [ ] The event must happen by a given time.
+- [ ] The event must happen at a set time.
+- [ ] The event must take at least a minimum amount of time
+- [x] The event can take no more than a maximum amount of time.
+
+**[END QUESTION]**
+
+### Upon what type of process control is Scrum based?
+
+- [ ] Hybrid
+- [x] Empirical
+- [ ] Defined
+- [ ] Complex
+
+**[END QUESTION]**
+
+### It is mandatory that the product Increment be released to production at the end of each Sprint.
+
+- [ ] True.
+- [x] False.
+
+**[END QUESTION]**
+
+### The Scrum Team must choose at least one high priority process improvement item, identified during the Sprint Retrospective, and place it in the Sprint Backlog.
+
+- [ ] True.
+- [x] False.
+
+**[END QUESTION]**
+
+### When does a Sprint conclude?
+
+- [ ] When the Product Owner decides enough has been delivered to meet the Sprint Goal.
+- [x] When the Sprint Retrospective is complete.
+- [ ] When all the tasks are completed by the Developers.
+- [ ] When all Product Backlog items meet their Definition of Done.
+
+**[END QUESTION]**
