@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
+
 @Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
     alias(libs.plugins.androidLibrary)
@@ -8,7 +10,7 @@ plugins {
 }
 
 android {
-    namespace = "com.kweku.armah.psm.data"
+    namespace = "com.kweku.armah.pspo.data"
     compileSdk = 33
 
     defaultConfig {
@@ -28,17 +30,17 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_17.toString()
+        jvmTarget = "1.8"
     }
 }
 
 dependencies {
 
-    implementation(project(":professionalscrummaster:domain"))
+    implementation(project(":professionalscrumproductowner:domain"))
     implementation(project(":core:resources"))
     implementation(project(":core:domain"))
     implementation(project(":core:utilities"))
