@@ -2,7 +2,7 @@ package com.kweku.armah.core.data.repository
 
 import com.kweku.armah.core.domain.model.Question
 import com.kweku.armah.core.domain.repository.QuestionsFileDataSource
-import com.kweku.armah.core.utilities.FileHelper
+import com.kweku.armah.core.utilities.files.FileHelper
 import javax.inject.Inject
 
 class QuestionsFileDataSourceImpl @Inject constructor(
