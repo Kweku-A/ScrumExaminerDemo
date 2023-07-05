@@ -53,10 +53,6 @@ android {
     }
 }
 
-ksp {
-    arg(RoomSchemaArgProvider(File(projectDir, "schemas")))
-}
-
 dependencies {
     // project dependencies - added for dependency injection to work
     implementation(project(":professionalscrummaster:presentation"))
@@ -128,16 +124,5 @@ kotlin {
             optIn("kotlin.ExperimentalUnsignedTypes") // annotation FQ-name
             progressiveMode = true // false by default
         }
-    }
-}
-
-class RoomSchemaArgProvider(
-    @get:InputDirectory
-    @get:PathSensitive(PathSensitivity.RELATIVE)
-    val schemaDir: File,
-) : CommandLineArgumentProvider {
-
-    override fun asArguments(): Iterable<String> {
-        return listOf("room.schemaLocation=${schemaDir.path}")
     }
 }

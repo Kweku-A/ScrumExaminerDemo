@@ -62,3 +62,18 @@ dependencies {
     ksp("androidx.room:room-compiler:2.5.1")
     implementation("androidx.room:room-ktx:2.5.1")
 }
+
+ksp {
+    arg(RoomSchemaArgProvider(File(projectDir, "schemas")))
+}
+
+class RoomSchemaArgProvider(
+    @get:InputDirectory
+    @get:PathSensitive(PathSensitivity.RELATIVE)
+    val schemaDir: File,
+) : CommandLineArgumentProvider {
+
+    override fun asArguments(): Iterable<String> {
+        return listOf("room.schemaLocation=${schemaDir.path}")
+    }
+}
