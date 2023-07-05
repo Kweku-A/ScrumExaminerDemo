@@ -1,4 +1,4 @@
-package com.kweku.armah.psm.presentation.screens
+package com.kweku.armah.pspo.presentation.screens
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.padding
@@ -13,16 +13,16 @@ import com.kweku.armah.pspo.presentation.viewmodels.PspoIntroViewModel
 import com.kweku.armah.resources.R
 
 @Composable
-fun PsdIntroScreenRoute(
+fun PspoIntroScreenRoute(
     navigateTo: () -> Unit = {},
     navigateBack: () -> Unit = {},
     viewModel: PspoIntroViewModel = hiltViewModel(),
 ) {
-    PsdIntroScreen(navigateTo = navigateTo, navigateBack = navigateBack)
+    PspoIntroScreen(navigateTo = navigateTo, navigateBack = navigateBack)
 }
 
 @Composable
-private fun PsdIntroScreen(navigateTo: () -> Unit, navigateBack: () -> Unit) {
+private fun PspoIntroScreen(navigateTo: () -> Unit, navigateBack: () -> Unit) {
     val modifier = Modifier.padding(vertical = 30.dp, horizontal = 15.dp)
     val introHeader = stringResource(
         R.string.welcome_to_the_exams,
@@ -40,5 +40,5 @@ private fun PsdIntroScreen(navigateTo: () -> Unit, navigateBack: () -> Unit) {
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun IntroScreenPreview() {
-    PsdIntroScreen(navigateTo = {}, navigateBack = {})
+    PspoIntroScreen(navigateTo = {}, navigateBack = {})
 }
