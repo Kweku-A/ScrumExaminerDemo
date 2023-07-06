@@ -26,7 +26,7 @@ private fun PspoIntroScreen(navigateTo: () -> Unit, navigateBack: () -> Unit) {
     val modifier = Modifier.padding(vertical = 30.dp, horizontal = 15.dp)
     val introHeader = stringResource(
         R.string.welcome_to_the_exams,
-        stringResource(R.string.professional_scrum_master),
+        stringResource(R.string.professional_scrum_product_owner),
     )
 
     ExamIntroCard(

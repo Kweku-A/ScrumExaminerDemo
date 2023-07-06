@@ -1,8 +1,8 @@
 package com.kweku.armah.pspo.presentation.navigation
 
 sealed class ProfessionalScrumProductOwnerDestinations {
-    data object IntroScreenDestination : ProfessionalScrumProductOwnerDestinations()
-    data object ReadyToStartScreenDestination : ProfessionalScrumProductOwnerDestinations()
-    data object QuizScreenDestination : ProfessionalScrumProductOwnerDestinations()
-    data object ResultScreenDestination : ProfessionalScrumProductOwnerDestinations()
+    data object PSPOIntroScreenDestination : ProfessionalScrumProductOwnerDestinations()
+    data object PSPOReadyToStartScreenDestination : ProfessionalScrumProductOwnerDestinations()
+    data object PSPOQuizScreenDestination : ProfessionalScrumProductOwnerDestinations()
+    data object PSPOResultScreenDestination : ProfessionalScrumProductOwnerDestinations()
 }

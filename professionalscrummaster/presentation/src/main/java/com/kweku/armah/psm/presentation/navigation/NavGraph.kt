@@ -10,13 +10,13 @@ import com.kweku.armah.psm.presentation.screens.ReadyToStartScreenRoute
 import com.kweku.armah.psm.presentation.screens.ResultScreenRoute
 
 fun NavGraphBuilder.addPSMIntroScreenRoute(navigateTo: () -> Unit, navigateBack: () -> Unit) {
-    composable(route = ProfessionalScrumMasterDestinations.IntroScreenDestination.toString()) {
+    composable(route = ProfessionalScrumMasterDestinations.PSMIntroScreenDestination.toString()) {
         PsdIntroScreenRoute(navigateTo = navigateTo, navigateBack = navigateBack)
     }
 }
 
 fun NavGraphBuilder.addPSMReadyToStartScreenRoute(navigateTo: () -> Unit) {
-    composable(route = ProfessionalScrumMasterDestinations.ReadyToStartScreenDestination.toString()) {
+    composable(route = ProfessionalScrumMasterDestinations.PSMReadyToStartScreenDestination.toString()) {
         ReadyToStartScreenRoute(navigateTo = navigateTo)
     }
 }
@@ -26,12 +26,12 @@ fun NavGraphBuilder.addPSMQuizScreenRoute(
     onFinishQuiz: () -> Unit,
     navigateToHome: () -> Unit = {},
 ) {
-    composable(route = ProfessionalScrumMasterDestinations.QuizScreenDestination.toString()) {
+    composable(route = ProfessionalScrumMasterDestinations.PSMQuizScreenDestination.toString()) {
         QuizScreenRoute(onFinishQuiz = onFinishQuiz)
     }
 
     composable(
-        route = "${ProfessionalScrumMasterDestinations.QuizScreenDestination}/{$REVIEW_PATH}",
+        route = "${ProfessionalScrumMasterDestinations.PSMQuizScreenDestination}/{$REVIEW_PATH}",
         arguments = listOf(
             navArgument(name = REVIEW_PATH) {
                 defaultValue = false
@@ -52,7 +52,7 @@ fun NavGraphBuilder.addPSMResultsScreenRoute(
     navigateToHome: () -> Unit,
     navigateToReview: () -> Unit,
 ) {
-    composable(route = ProfessionalScrumMasterDestinations.ResultScreenDestination.toString()) {
+    composable(route = ProfessionalScrumMasterDestinations.PSMResultScreenDestination.toString()) {
         ResultScreenRoute(navigateToHome = navigateToHome, navigateToReview = navigateToReview)
     }
 }

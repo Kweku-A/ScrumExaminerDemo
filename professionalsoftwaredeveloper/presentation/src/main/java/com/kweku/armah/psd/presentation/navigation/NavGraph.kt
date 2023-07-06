@@ -10,13 +10,13 @@ import com.kweku.armah.psd.presentation.screens.ReadyToStartScreenRoute
 import com.kweku.armah.psd.presentation.screens.ResultScreenRoute
 
 fun NavGraphBuilder.addPSDIntroScreenRoute(navigateTo: () -> Unit, navigateBack: () -> Unit) {
-    composable(route = ProfessionalScrumDeveloperDestinations.IntroScreenDestination.toString()) {
+    composable(route = ProfessionalScrumDeveloperDestinations.PSDIntroScreenDestination.toString()) {
         PsdIntroScreenRoute(navigateTo = navigateTo, navigateBack = navigateBack)
     }
 }
 
 fun NavGraphBuilder.addPSDReadyToStartScreenRoute(navigateTo: () -> Unit) {
-    composable(route = ProfessionalScrumDeveloperDestinations.ReadyToStartScreenDestination.toString()) {
+    composable(route = ProfessionalScrumDeveloperDestinations.PSDReadyToStartScreenDestination.toString()) {
         ReadyToStartScreenRoute(navigateTo = navigateTo)
     }
 }
@@ -26,12 +26,12 @@ fun NavGraphBuilder.addPSDQuizScreenRoute(
     onFinishQuiz: () -> Unit,
     navigateToHome: () -> Unit = {},
 ) {
-    composable(route = ProfessionalScrumDeveloperDestinations.QuizScreenDestination.toString()) {
+    composable(route = ProfessionalScrumDeveloperDestinations.PSDQuizScreenDestination.toString()) {
         QuizScreenRoute(onFinishQuiz = onFinishQuiz)
     }
 
     composable(
-        route = "${ProfessionalScrumDeveloperDestinations.QuizScreenDestination}/{$REVIEW_PATH}",
+        route = "${ProfessionalScrumDeveloperDestinations.PSDQuizScreenDestination}/{$REVIEW_PATH}",
         arguments = listOf(
             navArgument(name = REVIEW_PATH) {
                 defaultValue = false
@@ -52,7 +52,7 @@ fun NavGraphBuilder.addPSDResultsScreenRoute(
     navigateToHome: () -> Unit,
     navigateToReview: () -> Unit,
 ) {
-    composable(route = ProfessionalScrumDeveloperDestinations.ResultScreenDestination.toString()) {
+    composable(route = ProfessionalScrumDeveloperDestinations.PSDResultScreenDestination.toString()) {
         ResultScreenRoute(navigateToHome = navigateToHome, navigateToReview = navigateToReview)
     }
 }
