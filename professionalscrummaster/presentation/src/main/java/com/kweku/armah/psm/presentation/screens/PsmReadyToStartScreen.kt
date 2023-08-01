@@ -10,12 +10,12 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.kweku.armah.core.presentation.composables.ReadyToStartBody
-import com.kweku.armah.psm.presentation.viewmodels.ReadyToStartViewModel
+import com.kweku.armah.psm.presentation.viewmodels.PsmReadyToStartViewModel
 
 @Composable
 fun ReadyToStartScreenRoute(
     navigateTo: () -> Unit = {},
-    viewModel: ReadyToStartViewModel = hiltViewModel(),
+    viewModel: PsmReadyToStartViewModel = hiltViewModel(),
 ) {
     val generateQuiz: () -> Unit = {
         viewModel.generateQuiz()
@@ -26,17 +26,17 @@ fun ReadyToStartScreenRoute(
     if (isQuizReady) {
         navigateTo()
     }
-    ReadyToStartScreen(generateQuiz = generateQuiz)
+    PsmReadyToStartScreen(generateQuiz = generateQuiz)
 }
 
 @Composable
-private fun ReadyToStartScreen(generateQuiz: () -> Unit) {
+fun PsmReadyToStartScreen(generateQuiz: () -> Unit) {
     val modifier = Modifier.padding(vertical = 30.dp, horizontal = 15.dp)
     ReadyToStartBody(modifier, generateQuiz)
 }
 
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-private fun IntroScreenPreview() {
-    ReadyToStartScreen({})
+private fun PsmReadyToStartScreenPreview() {
+    PsmReadyToStartScreen({})
 }

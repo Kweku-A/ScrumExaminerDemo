@@ -1,4 +1,4 @@
-package com.kweku.armah.psm.presentation.screens
+package com.kweku.armah.pspo.presentation.screens
 
 import android.content.res.Configuration
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -15,13 +15,13 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.kweku.armah.core.presentation.composables.QuizScreenBody
 import com.kweku.armah.core.presentation.data.AnswerUi
 import com.kweku.armah.core.presentation.data.QuestionsUi
-import com.kweku.armah.psm.presentation.viewmodels.PsmQuizScreenViewModel
+import com.kweku.armah.pspo.presentation.viewmodels.PspoQuizScreenViewModel
 
 @Composable
 fun QuizScreenRoute(
     onFinishQuiz: () -> Unit = {},
     navigateToHome: () -> Unit = {},
-    viewModel: PsmQuizScreenViewModel = hiltViewModel(),
+    viewModel: PspoQuizScreenViewModel = hiltViewModel(),
     shouldReview: Boolean = false,
 ) {
     val listOfQuestions by viewModel.quizQuestionsStateFlow.collectAsStateWithLifecycle()
@@ -38,7 +38,7 @@ fun QuizScreenRoute(
         onFinishQuiz()
     }
 
-    QuizScreen(
+    PspoQuizScreen(
         timeLeft = timeLeft,
         shouldReview = shouldReview,
         listOfQuestions = listOfQuestions,
@@ -50,7 +50,7 @@ fun QuizScreenRoute(
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-private fun QuizScreen(
+fun PspoQuizScreen(
     timeLeft: String,
     shouldReview: Boolean,
     listOfQuestions: List<QuestionsUi>,
@@ -83,8 +83,8 @@ private fun QuizScreen(
 
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
 @Composable
-private fun IntroScreenPreview() {
-    QuizScreen(
+private fun PspoQuizScreenPreview() {
+    PspoQuizScreen(
         "00:00:00",
         true,
         listOfQuestions = emptyList(),

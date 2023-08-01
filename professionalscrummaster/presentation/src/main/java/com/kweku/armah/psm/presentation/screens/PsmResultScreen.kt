@@ -11,13 +11,13 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.kweku.armah.core.presentation.composables.ResultScreenBody
 import com.kweku.armah.core.presentation.data.FinalScoreUi
-import com.kweku.armah.psm.presentation.viewmodels.ResultScreenViewModel
+import com.kweku.armah.psm.presentation.viewmodels.PsmResultScreenViewModel
 
 @Composable
 fun ResultScreenRoute(
     navigateToReview: () -> Unit = {},
     navigateToHome: () -> Unit = {},
-    viewModel: ResultScreenViewModel = hiltViewModel(),
+    viewModel: PsmResultScreenViewModel = hiltViewModel(),
 ) {
     val finalScoreUi by viewModel.finalScoreStateFlow.collectAsStateWithLifecycle()
 
@@ -29,7 +29,7 @@ fun ResultScreenRoute(
         viewModel.resetOnGoingQuizFlag()
     }
 
-    ResultScreen(
+    PsmResultScreen(
         finalScore = finalScoreUi,
         navigateToReview = navigateToReview,
         clearFinishedQuiz = clearFinishedQuiz,
@@ -39,7 +39,7 @@ fun ResultScreenRoute(
 }
 
 @Composable
-private fun ResultScreen(
+fun PsmResultScreen(
     finalScore: FinalScoreUi,
     navigateToReview: () -> Unit = {},
     clearFinishedQuiz: () -> Unit = {},
@@ -59,6 +59,6 @@ private fun ResultScreen(
 
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-private fun IntroScreenPreview() {
-    ResultScreen(FinalScoreUi())
+private fun PsmResultScreenPreview() {
+    PsmResultScreen(FinalScoreUi())
 }

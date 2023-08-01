@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ReadyToStartViewModel @Inject constructor(
+class PsdReadyToStartViewModel @Inject constructor(
     private val generateQuizUseCase: GenerateQuizUseCase,
     private val setQuizStartTimeUseCase: SetQuizStartTimeUseCase,
     @ProfessionalScrumDeveloper private val quizQuestionsRepository: QuizQuestionsRepository,

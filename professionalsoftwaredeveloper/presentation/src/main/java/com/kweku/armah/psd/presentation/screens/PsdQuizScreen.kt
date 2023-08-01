@@ -38,7 +38,7 @@ fun QuizScreenRoute(
         onFinishQuiz()
     }
 
-    QuizScreen(
+    PsdQuizScreen(
         timeLeft = timeLeft,
         shouldReview = shouldReview,
         listOfQuestions = listOfQuestions,
@@ -50,7 +50,7 @@ fun QuizScreenRoute(
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-private fun QuizScreen(
+fun PsdQuizScreen(
     timeLeft: String,
     shouldReview: Boolean,
     listOfQuestions: List<QuestionsUi>,
@@ -83,8 +83,8 @@ private fun QuizScreen(
 
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
 @Composable
-private fun IntroScreenPreview() {
-    QuizScreen(
+private fun PsdQuizScreenPreview() {
+    PsdQuizScreen(
         "00:00:00",
         true,
         listOfQuestions = emptyList(),

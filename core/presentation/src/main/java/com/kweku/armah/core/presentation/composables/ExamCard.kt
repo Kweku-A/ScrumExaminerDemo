@@ -15,6 +15,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.ParagraphStyle
 import androidx.compose.ui.text.TextStyle
@@ -94,7 +95,7 @@ fun ExamIntroCard(
 
             item {
                 Button(
-                    modifier = Modifier.padding(top = 20.dp).width(300.dp),
+                    modifier = Modifier.padding(top = 20.dp).width(300.dp).testTag("continue_button"),
                     onClick = navigateTo,
                 ) {
                     Text(text = stringResource(R.string.btn_continue))
@@ -103,7 +104,7 @@ fun ExamIntroCard(
 
             item {
                 TextButton(
-                    modifier = Modifier.padding(top = 10.dp).width(300.dp),
+                    modifier = Modifier.padding(top = 10.dp).width(300.dp).testTag("back_to_home"),
                     onClick = navigateBack,
                 ) {
                     Text(text = stringResource(R.string.back_to_home))

@@ -1,14 +1,14 @@
-package com.kweku.armah.psd.presentation.viewmodels
+package com.kweku.armah.psm.presentation.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kweku.armah.core.domain.repository.QuizQuestionsRepository
 import com.kweku.armah.core.domain.usecase.CalculateQuizResultsUseCase
-import com.kweku.armah.core.domain.usecase.SetQuizOnOffUseCase
-import com.kweku.armah.psd.domain.ProfessionalScrumDeveloper
 import com.kweku.armah.core.domain.usecase.DeleteQuizUseCase
 import com.kweku.armah.core.domain.usecase.GetQuizUseCase
+import com.kweku.armah.core.domain.usecase.SetQuizOnOffUseCase
 import com.kweku.armah.core.presentation.data.FinalScoreUi
+import com.kweku.armah.psm.domain.ProfessionalScrumMaster
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,12 +17,12 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ResultScreenViewModel @Inject constructor(
+class PsmResultScreenViewModel @Inject constructor(
     private val calculateQuizResultsUseCase: CalculateQuizResultsUseCase,
     private val deleteQuizUseCase: DeleteQuizUseCase,
     private val setQuizOnOffUseCase: SetQuizOnOffUseCase,
     private val getQuizUseCase: GetQuizUseCase,
-    @ProfessionalScrumDeveloper private val quizQuestionsRepository: QuizQuestionsRepository,
+    @ProfessionalScrumMaster private val quizQuestionsRepository: QuizQuestionsRepository,
 ) :
     ViewModel() {
 

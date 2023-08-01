@@ -39,6 +39,6 @@ private fun PsdIntroScreen(navigateTo: () -> Unit, navigateBack: () -> Unit) {
 
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-private fun IntroScreenPreview() {
+private fun PsmIntroScreenPreview() {
     PsdIntroScreen(navigateTo = {}, navigateBack = {})
 }
