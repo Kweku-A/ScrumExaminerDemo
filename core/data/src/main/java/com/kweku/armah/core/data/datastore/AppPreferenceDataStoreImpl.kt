@@ -39,6 +39,10 @@ class AppPreferenceDataStoreImpl @Inject constructor(@ApplicationContext private
                     prefs[key] = value
                 }
 
+                is Float -> {
+                    prefs[key] = value
+                }
+
                 else -> {
                     throw UnsupportedOperationException("The type you passed is not supported")
                 }
@@ -49,4 +53,10 @@ class AppPreferenceDataStoreImpl @Inject constructor(@ApplicationContext private
         context.dataStore.data.map {
             it[key]
         }
+
+    override suspend fun clear() {
+        context.dataStore.edit {
+            it.clear()
+        }
+    }
 }

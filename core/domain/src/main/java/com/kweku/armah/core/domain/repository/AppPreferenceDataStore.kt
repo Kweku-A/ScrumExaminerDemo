@@ -7,4 +7,5 @@ interface AppPreferenceDataStore {
 
     suspend fun<T> updateDataStore(key: Preferences.Key<T>, value: T): Preferences
     fun<T> getDataStore(key: Preferences.Key<T>): Flow<T?>
+    suspend fun clear()
 }
