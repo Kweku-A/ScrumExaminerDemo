@@ -22,7 +22,7 @@ fun PspoIntroScreenRoute(
 }
 
 @Composable
-private fun PspoIntroScreen(navigateTo: () -> Unit, navigateBack: () -> Unit) {
+fun PspoIntroScreen(navigateTo: () -> Unit, navigateBack: () -> Unit) {
     val modifier = Modifier.padding(vertical = 30.dp, horizontal = 15.dp)
     val introHeader = stringResource(
         R.string.welcome_to_the_exams,
