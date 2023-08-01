@@ -18,7 +18,7 @@ interface PsmQuestionsDao {
     @Query("SELECT * FROM psm_questions WHERE id IN (:ids)")
     fun loadAllByIds(ids: IntArray): List<PsmQuestionEntity>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert
     suspend fun insertAll(users: List<PsmQuestionEntity>)
 
     @Delete

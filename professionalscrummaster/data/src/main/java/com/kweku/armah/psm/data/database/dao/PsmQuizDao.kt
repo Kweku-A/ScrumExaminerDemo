@@ -19,7 +19,7 @@ interface PsmQuizDao {
     @Query("SELECT * FROM psm_quiz WHERE id IN (:ids)")
     fun loadAllByIds(ids: IntArray): List<PsmQuizEntity>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert
     suspend fun insertAll(users: List<PsmQuizEntity>)
 
     @Delete

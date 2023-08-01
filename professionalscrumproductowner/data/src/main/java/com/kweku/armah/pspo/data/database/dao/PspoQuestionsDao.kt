@@ -18,7 +18,7 @@ interface PspoQuestionsDao {
     @Query("SELECT * FROM pspo_questions WHERE id IN (:ids)")
     fun loadAllByIds(ids: IntArray): List<PspoQuestionEntity>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert
     suspend fun insertAll(users: List<PspoQuestionEntity>)
 
     @Delete
