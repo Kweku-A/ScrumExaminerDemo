@@ -38,7 +38,6 @@ android {
 dependencies {
 
     implementation(libs.core.ktx)
-    implementation(libs.androidx.runner)
     implementation(libs.junit)
     implementation(libs.androidx.test.ext.junit)
     implementation(libs.espresso.core)
@@ -46,7 +45,7 @@ dependencies {
     api(libs.ui.test.junit4)
 
     implementation(libs.hilt.android.test)
-    implementation(libs.hilt.android.test)
+//    implementation(libs.hilt.android.test)
     kapt(libs.hilt.compiler)
     // ...with Kotlin.
 

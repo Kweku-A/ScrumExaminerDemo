@@ -52,14 +52,18 @@ fun HomeScreenRoute(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun HomeScreen(isQuizOnGoing: Boolean, navigateTo: (HomeButtons) -> Unit, navigateToQuiz: () -> Unit) {
+private fun HomeScreen(
+    isQuizOnGoing: Boolean,
+    navigateTo: (HomeButtons) -> Unit,
+    navigateToQuiz: () -> Unit,
+) {
     LazyColumn(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier.fillMaxWidth(),
     ) {
-        items(listOf(HomeButtons.PSM, HomeButtons.PSD,HomeButtons.PSPO)) {
+        items(listOf(HomeButtons.PSM, HomeButtons.PSD, HomeButtons.PSPO)) {
             Card(
-                onClick = {navigateTo(it)},
+                onClick = { navigateTo(it) },
                 shape = RoundedCornerShape(5.dp),
                 modifier = Modifier.fillMaxWidth().padding(10.dp).height(150.dp),
             ) {
