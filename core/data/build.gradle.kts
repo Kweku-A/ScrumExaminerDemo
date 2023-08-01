@@ -44,14 +44,10 @@ dependencies {
     implementation(project(":core:domain"))
     implementation(project(":core:utilities"))
     implementation(project(":core:resources"))
-
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
     implementation(libs.material)
     testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.test.ext.junit)
-    androidTestImplementation(libs.espresso.core)
-
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
     implementation("androidx.datastore:datastore-preferences:1.0.0")
@@ -61,6 +57,15 @@ dependencies {
     annotationProcessor("androidx.room:room-compiler:2.5.1")
     ksp("androidx.room:room-compiler:2.5.1")
     implementation("androidx.room:room-ktx:2.5.1")
+}
+
+dependencies {
+    androidTestImplementation(libs.androidx.test.ext.junit)
+    androidTestImplementation(libs.espresso.core)
+}
+
+dependencies {
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
 }
 
 ksp {
