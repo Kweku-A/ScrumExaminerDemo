@@ -27,5 +27,5 @@ The app module serves as the starting/connecting point for all features
 
 ## Note
 - The app is still being developed and will be refactored accordingly
-- No tests have been added
+- Few tests have been added
 - Whatever you don't see is not there :)
