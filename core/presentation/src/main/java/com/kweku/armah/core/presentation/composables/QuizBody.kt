@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -29,6 +30,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -40,6 +42,7 @@ import com.kweku.armah.core.presentation.composables.multiplechoice.MultipleAnsw
 import com.kweku.armah.core.presentation.composables.multiplechoice.SingleAnswerSelection
 import com.kweku.armah.core.presentation.data.AnswerUi
 import com.kweku.armah.core.presentation.data.QuestionsUi
+import com.kweku.armah.core.presentation.data.fakes.fakeListOfQuestions
 import com.kweku.armah.resources.R
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -49,7 +52,7 @@ import kotlinx.coroutines.launch
 fun QuizScreenBody(
     modifier: Modifier = Modifier,
     shouldReview: Boolean = false,
-    timeLeft: String = "00:00",
+    timeLeft: () -> String = { "00:00" },
     questionsCount: Int = 0,
     pagerState: PagerState = rememberPagerState(),
     listOfQuestions: List<QuestionsUi> = emptyList(),
@@ -88,29 +91,41 @@ fun QuizScreenBody(
                 modifier = Modifier.fillMaxSize(),
             ) {
                 item {
-                    Text(
-                        text = "$questionNumber. ${questionItem.question}",
-                        style = TextStyle(
-                            fontSize = MaterialTheme.typography.titleMedium.fontSize,
-                            fontWeight = FontWeight.Bold,
-                            textAlign = TextAlign.Start,
-                        ),
-                    )
+                    Surface(
+                        shape = RoundedCornerShape(topStart = 8.dp, topEnd = 8.dp),
+                        color = MaterialTheme.colorScheme.primary.copy(alpha = 0.4f),
+                        modifier = Modifier.fillMaxWidth().defaultMinSize(minHeight = 150.dp),
+                    ) {
+                        Text(
+                            modifier = Modifier.padding(10.dp),
+                            text = "$questionNumber. ${questionItem.question}",
+                            style = TextStyle(
+                                fontSize = MaterialTheme.typography.titleMedium.fontSize,
+                                fontWeight = FontWeight.Bold,
+                                textAlign = TextAlign.Start,
+                            ),
+                        )
+                    }
                 }
 
                 item {
-                    if (questionItem.correctAnswers.size > 1) {
-                        MultipleAnswersSelection(
-                            shouldReview = shouldReview,
-                            questionItem = questionItem,
-                            selectedAnswers = selectedAnswers,
-                        )
-                    } else {
-                        SingleAnswerSelection(
-                            shouldReview = shouldReview,
-                            questionItem = questionItem,
-                            selectedAnswers = selectedAnswers,
-                        )
+                    Surface(
+                        color = MaterialTheme.colorScheme.primary.copy(alpha = 0.1f),
+                        modifier = Modifier.fillMaxWidth().defaultMinSize(minHeight = 450.dp),
+                    ) {
+                        if (questionItem.correctAnswers.size > 1) {
+                            MultipleAnswersSelection(
+                                shouldReview = shouldReview,
+                                questionItem = questionItem,
+                                selectedAnswers = selectedAnswers,
+                            )
+                        } else {
+                            SingleAnswerSelection(
+                                shouldReview = shouldReview,
+                                questionItem = questionItem,
+                                selectedAnswers = selectedAnswers,
+                            )
+                        }
                     }
                 }
             }
@@ -208,14 +223,21 @@ fun QuizScreenBody(
 }
 
 @Composable
-private fun QuizTimer(shouldReview: Boolean, timeLeft: String, modifier: Modifier = Modifier) {
-    AnimatedVisibility(visible = !shouldReview && timeLeft.isNotEmpty(), modifier = modifier) {
+private fun QuizTimer(
+    shouldReview: Boolean,
+    timeLeft: () -> String,
+    modifier: Modifier = Modifier,
+) {
+    val isVisible: () -> Boolean = { !shouldReview && timeLeft().isNotEmpty() }
+    AnimatedVisibility(visible = isVisible(), modifier = modifier) {
         Surface(
             color = MaterialTheme.colorScheme.tertiary,
             shape = RoundedCornerShape(10.dp),
         ) {
+            val text = stringResource(R.string.time_left, timeLeft())
+
             Text(
-                text = stringResource(R.string.time_left, timeLeft),
+                text = text,
                 Modifier.padding(vertical = 5.dp, horizontal = 10.dp),
                 style = TextStyle(
                     textAlign = TextAlign.End,
@@ -232,6 +254,11 @@ private fun QuizTimer(shouldReview: Boolean, timeLeft: String, modifier: Modifie
 @Composable
 fun QuizBodyPreview() {
     MaterialTheme {
-        QuizScreenBody()
+        Surface(color = Color.White) {
+            QuizScreenBody(
+                listOfQuestions = fakeListOfQuestions,
+                questionsCount = fakeListOfQuestions.size,
+            )
+        }
     }
 }

@@ -39,7 +39,7 @@ fun QuizScreenRoute(
     }
 
     PsdQuizScreen(
-        timeLeft = timeLeft,
+        timeLeft = { timeLeft },
         shouldReview = shouldReview,
         listOfQuestions = listOfQuestions,
         setSelectedAnswers = setSelectedAnswers,
@@ -51,7 +51,7 @@ fun QuizScreenRoute(
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun PsdQuizScreen(
-    timeLeft: String,
+    timeLeft: () -> String,
     shouldReview: Boolean,
     listOfQuestions: List<QuestionsUi>,
     setSelectedAnswers: (List<AnswerUi>, Int) -> Unit,
@@ -85,7 +85,7 @@ fun PsdQuizScreen(
 @Composable
 private fun PsdQuizScreenPreview() {
     PsdQuizScreen(
-        "00:00:00",
+        { "00:00:00" },
         true,
         listOfQuestions = emptyList(),
         setSelectedAnswers = { _, _ -> },

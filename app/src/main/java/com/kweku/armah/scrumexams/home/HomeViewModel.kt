@@ -25,7 +25,7 @@ class HomeViewModel @Inject constructor(
     ViewModel() {
 
     val isQuizOnGoing: StateFlow<Boolean> =
-        isAnyQuizOngoingUseCase().stateIn(viewModelScope, SharingStarted.Lazily, false)
+        isAnyQuizOngoingUseCase().stateIn(viewModelScope, SharingStarted.Eagerly, false)
 
     fun deleteAllQuiz() {
         viewModelScope.launch(Dispatchers.IO) {

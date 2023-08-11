@@ -19,7 +19,7 @@ This is a feature folder containing the code related to PSM. It is divided into 
 ### ProfessionalScrumDeveloper folder
 This is a feature folder containing the code related to PSD. It is divided into 3 layers which are modularised:
 - Presentation: Contains UI related implementations
-- Data: Contains the data layer implementaions
+- Data: Contains the data layer implementations
 - Domain: Domain layer implementations (Core to the feature)
 
 ### App
