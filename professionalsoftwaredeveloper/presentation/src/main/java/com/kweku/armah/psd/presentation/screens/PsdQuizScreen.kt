@@ -59,7 +59,7 @@ fun PsdQuizScreen(
     navigateToHome: () -> Unit,
 ) {
     val modifier = Modifier.padding(vertical = 30.dp, horizontal = 0.dp)
-    val pagerState = rememberPagerState()
+    val pagerState = rememberPagerState() { listOfQuestions.size }
     val coroutineScope = rememberCoroutineScope()
     val questionsCount = listOfQuestions.size
 
@@ -68,16 +68,16 @@ fun PsdQuizScreen(
     }
 
     QuizScreenBody(
-        modifier,
-        shouldReview,
-        timeLeft,
-        questionsCount,
-        pagerState,
-        listOfQuestions,
-        selectedAnswers,
-        navigateToHome,
-        onFinishQuiz,
-        coroutineScope,
+        modifier = modifier,
+        pagerState = pagerState,
+        questionsCount = listOfQuestions.size,
+        shouldReview = shouldReview,
+        timeLeft = timeLeft,
+        listOfQuestions = listOfQuestions,
+        selectedAnswers = selectedAnswers,
+        navigateToHome = navigateToHome,
+        onFinishQuiz = onFinishQuiz,
+        coroutineScope = coroutineScope,
     )
 }
 

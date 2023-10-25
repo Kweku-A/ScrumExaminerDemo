@@ -8,7 +8,7 @@ plugins {
 
 android {
     namespace = "com.kweku.armah.psm.domain"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         minSdk = 24
@@ -38,6 +38,9 @@ android {
 dependencies {
 
     implementation(project(":core:domain"))
+}
+
+dependencies {
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
     implementation(libs.material)

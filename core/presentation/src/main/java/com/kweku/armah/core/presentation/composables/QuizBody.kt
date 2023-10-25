@@ -51,10 +51,10 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalFoundationApi::class)
 fun QuizScreenBody(
     modifier: Modifier = Modifier,
+    questionsCount: Int = 0,
+    pagerState: PagerState = rememberPagerState { 0 },
     shouldReview: Boolean = false,
     timeLeft: () -> String = { "00:00" },
-    questionsCount: Int = 0,
-    pagerState: PagerState = rememberPagerState(),
     listOfQuestions: List<QuestionsUi> = emptyList(),
     selectedAnswers: (List<AnswerUi>) -> Unit = {},
     navigateToHome: () -> Unit = {},
@@ -76,7 +76,6 @@ fun QuizScreenBody(
                 .weight(9f)
                 .fillMaxSize()
                 .padding(12.dp),
-            pageCount = questionsCount,
             state = pagerState,
             userScrollEnabled = false,
         ) { count ->

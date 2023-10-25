@@ -1,17 +1,15 @@
-import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
-
 @Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinAndroid)
-    id("com.google.devtools.ksp")
+    alias(libs.plugins.kspPlugin)
     kotlin("kapt")
     alias(libs.plugins.hiltPlugin)
 }
 
 android {
     namespace = "com.kweku.armah.pspo.data"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         minSdk = 24
@@ -44,7 +42,9 @@ dependencies {
     implementation(project(":core:resources"))
     implementation(project(":core:domain"))
     implementation(project(":core:utilities"))
+}
 
+dependencies {
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
     implementation(libs.material)
@@ -52,13 +52,13 @@ dependencies {
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
 
-    implementation("androidx.room:room-runtime:2.5.1")
-    annotationProcessor("androidx.room:room-compiler:2.5.1")
-    ksp("androidx.room:room-compiler:2.5.1")
-    implementation("androidx.room:room-ktx:2.5.1")
+    implementation(libs.androidx.room.runtime)
+    annotationProcessor(libs.androidx.room.compiler)
+    ksp(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.ktx)
 
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
 
-    implementation("com.google.code.gson:gson:2.10.1")
+    implementation(libs.gson)
 }

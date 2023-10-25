@@ -8,7 +8,7 @@ plugins {
 
 android {
     namespace = "com.kweku.armah.core.presentation"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         minSdk = 24
@@ -30,7 +30,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.3"
+        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.version.get()
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
@@ -45,6 +45,9 @@ dependencies {
 
     implementation(project(":core:domain"))
     implementation(project(":core:resources"))
+}
+
+dependencies {
     implementation(libs.core.ktx)
     implementation(libs.lifecycle.runtime.ktx)
     implementation(libs.activity.compose)
@@ -53,7 +56,7 @@ dependencies {
     implementation(libs.ui.graphics)
     implementation(libs.ui.tooling.preview)
     implementation(libs.material3)
-    implementation("androidx.compose.foundation:foundation:1.4.3")
+    implementation(libs.androidx.foundation)
     implementation(libs.androidx.uiautomator)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
@@ -63,20 +66,8 @@ dependencies {
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
 
-    // implementation(libs.androidx.material)
     implementation(libs.androidx.material.icons.extended)
     implementation(platform(libs.kotlin.bom))
-
-//    implementation(libs.androidx.lifecycle.viewmodel.ktx)
-//    implementation("androidx.lifecycle:lifecycle-viewmodel-compose")
-//    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.5.1")
-//    implementation(libs.androidx.lifecycle.viewmodel.savedstate)
-//    implementation(libs.androidx.lifecycle.runtime.compose)
-
-//    implementation(libs.androidx.activity.ktx)
-//
-//    implementation(libs.androidx.hilt.navigation.compose)
-//    implementation(libs.androidx.navigation.compose)
 
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)

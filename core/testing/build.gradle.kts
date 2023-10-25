@@ -3,12 +3,12 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinAndroid)
     kotlin("kapt")
-   // alias(libs.plugins.hiltPlugin)
+    // alias(libs.plugins.hiltPlugin)
 }
 
 android {
     namespace = "com.kweku.armah.testing"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         minSdk = 24
@@ -22,7 +22,7 @@ android {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "proguard-rules.pro",
             )
         }
     }
@@ -48,7 +48,6 @@ dependencies {
 //    implementation(libs.hilt.android.test)
     kapt(libs.hilt.compiler)
     // ...with Kotlin.
-
 }
 
 kotlin {

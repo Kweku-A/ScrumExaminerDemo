@@ -4,17 +4,17 @@ plugins {
     alias(libs.plugins.kotlinAndroid)
     kotlin("kapt")
     alias(libs.plugins.hiltPlugin)
-    id("com.google.devtools.ksp")
+   alias(libs.plugins.kspPlugin)
 }
 
 android {
     namespace = "com.kweku.armah.scrumexams"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.kweku.armah.scrumexams"
         minSdk = 24
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -44,7 +44,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.3"
+        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.version.get()
     }
     packaging {
         resources {
@@ -113,6 +113,8 @@ dependencies {
 
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
+
+
 }
 
 kotlin {

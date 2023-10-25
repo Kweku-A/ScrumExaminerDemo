@@ -8,7 +8,7 @@ plugins {
 
 android {
     namespace = "com.kweku.armah.pspo.presentation"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         minSdk = 24
@@ -37,7 +37,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.3"
+        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.version.get()
     }
 }
 
@@ -47,6 +47,9 @@ dependencies {
     implementation(project(":core:resources"))
     implementation(project(":core:domain"))
     implementation(project(":core:presentation"))
+}
+
+dependencies {
     implementation(libs.core.ktx)
     implementation(libs.lifecycle.runtime.ktx)
     implementation(libs.activity.compose)
@@ -55,7 +58,7 @@ dependencies {
     implementation(libs.ui.graphics)
     implementation(libs.ui.tooling.preview)
     implementation(libs.material3)
-    implementation("androidx.compose.foundation:foundation:1.4.3")
+    implementation(libs.androidx.foundation)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)

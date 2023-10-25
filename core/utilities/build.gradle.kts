@@ -4,14 +4,14 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinAndroid)
-    id("com.google.devtools.ksp")
+   alias(libs.plugins.kspPlugin)
     kotlin("kapt")
     alias(libs.plugins.hiltPlugin)
 }
 
 android {
     namespace = "com.kweku.armah.core.utilities"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         minSdk = 24
@@ -41,6 +41,8 @@ android {
 dependencies {
 
     implementation(project(":core:domain"))
+}
+dependencies {
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
     implementation(libs.material)
@@ -50,5 +52,5 @@ dependencies {
 
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
-    implementation("androidx.datastore:datastore-preferences:1.0.0")
+    implementation(libs.androidx.datastore.preferences)
 }

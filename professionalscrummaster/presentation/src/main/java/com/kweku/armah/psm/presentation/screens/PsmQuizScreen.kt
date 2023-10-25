@@ -59,25 +59,30 @@ fun PsmQuizScreen(
     navigateToHome: () -> Unit,
 ) {
     val modifier = Modifier.padding(vertical = 30.dp, horizontal = 0.dp)
-    val pagerState = rememberPagerState()
+    val pagerState = rememberPagerState(
+        initialPage = 0,
+        initialPageOffsetFraction = 0f,
+    ) {
+        // provide pageCount
+        listOfQuestions.size
+    }
     val coroutineScope = rememberCoroutineScope()
-    val questionsCount = listOfQuestions.size
 
     val selectedAnswers: (List<AnswerUi>) -> Unit = {
         setSelectedAnswers(it, pagerState.currentPage)
     }
 
     QuizScreenBody(
-        modifier,
-        shouldReview,
-        timeLeft,
-        questionsCount,
-        pagerState,
-        listOfQuestions,
-        selectedAnswers,
-        navigateToHome,
-        onFinishQuiz,
-        coroutineScope,
+        modifier = modifier,
+        pagerState = pagerState,
+        questionsCount = listOfQuestions.size,
+        shouldReview = shouldReview,
+        timeLeft = timeLeft,
+        listOfQuestions = listOfQuestions,
+        selectedAnswers = selectedAnswers,
+        navigateToHome = navigateToHome,
+        onFinishQuiz = onFinishQuiz,
+        coroutineScope = coroutineScope,
     )
 }
 
