@@ -41,12 +41,21 @@ dependencies {
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
     implementation(libs.material)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.test.ext.junit)
-    androidTestImplementation(libs.espresso.core)
-
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
     implementation(libs.androidx.datastore.preferences)
     implementation(libs.kotlinx.datetime)
+}
+
+dependencies{
+    androidTestImplementation(libs.androidx.test.ext.junit)
+    androidTestImplementation(libs.espresso.core)
+    androidTestImplementation (libs.kotlinx.coroutines.test)
+    androidTestImplementation(libs.kotlin.test)
+}
+
+dependencies {
+    testImplementation(libs.junit)
+    testImplementation (libs.kotlinx.coroutines.test)
+    testImplementation(libs.kotlin.test)
 }
