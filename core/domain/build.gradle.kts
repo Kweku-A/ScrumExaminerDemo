@@ -2,7 +2,7 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinAndroid)
-   alias(libs.plugins.kspPlugin)
+    alias(libs.plugins.kspPlugin)
     kotlin("kapt")
     alias(libs.plugins.hiltPlugin)
 }
@@ -47,15 +47,15 @@ dependencies {
     implementation(libs.kotlinx.datetime)
 }
 
-dependencies{
+dependencies {
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
-    androidTestImplementation (libs.kotlinx.coroutines.test)
-    androidTestImplementation(libs.kotlin.test)
+    implementation(libs.kotlinx.coroutines.test)
+    implementation(libs.kotlin.test)
 }
 
 dependencies {
     testImplementation(libs.junit)
-    testImplementation (libs.kotlinx.coroutines.test)
+    testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.kotlin.test)
 }
