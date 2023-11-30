@@ -7,5 +7,8 @@ plugins {
     alias(libs.plugins.androidTest) apply false
     alias(libs.plugins.hiltPlugin) apply false
     alias(libs.plugins.kspPlugin) apply false
+
 }
 true // Needed to make the Suppress annotation work for the plugins block
+
+

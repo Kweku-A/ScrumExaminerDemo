@@ -28,6 +28,7 @@ runner = "1.5.2"
 uiautomator = "2.2.0"
 ksp-plugin = "1.9.0-1.0.13"
 compose-compiler-version = "1.5.2"
+sonarqube-gradle-plugin = "4.4.1.3373"
 
 [libraries]
 androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "activity-compose" }
@@ -70,6 +71,7 @@ material3 = { group = "androidx.compose.material3", name = "material3" }
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 androidx-uiautomator = { group = "androidx.test.uiautomator", name = "uiautomator", version.ref = "uiautomator" }
+sonarqube-gradle-plugin = { module = "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin", version.ref = "sonarqube-gradle-plugin" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
