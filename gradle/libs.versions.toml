@@ -26,7 +26,7 @@ room-runtime = "2.6.1"
 rules = "1.5.0"
 runner = "1.5.2"
 uiautomator = "2.2.0"
-ksp-plugin = "1.9.0-1.0.13"
+ksp-plugin = "1.9.21-1.0.15"
 compose-compiler-version = "1.5.2"
 sonarqube-gradle-plugin = "4.4.1.3373"
 
