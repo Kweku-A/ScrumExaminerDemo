@@ -20,7 +20,6 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
-@OptIn(ExperimentalCoroutinesApi::class)
 class AppPreferenceDataStoreTest {
 
     private lateinit var sut: AppPreferenceDataStore
