@@ -13,7 +13,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "ScrumExams"
+rootProject.name = "ScrumExaminerDemo"
 include(":app")
 include(":professionalsoftwaredeveloper:presentation")
 include(":professionalsoftwaredeveloper:data")
