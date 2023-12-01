@@ -1,4 +1,4 @@
-package com.kweku.armah.testing.core.repository
+package com.kweku.armah.core.domain
 
 import com.kweku.armah.core.domain.repository.QuestionsFileDataSource
 import com.kweku.armah.core.domain.repository.fakes.FakeQuestionsFileDataSource

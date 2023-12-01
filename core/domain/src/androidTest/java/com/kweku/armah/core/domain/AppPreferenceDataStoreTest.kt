@@ -1,4 +1,4 @@
-package com.kweku.armah.testing.core.data.datastore
+package com.kweku.armah.core.domain
 
 import android.content.Context
 import androidx.datastore.preferences.core.Preferences
