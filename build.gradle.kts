@@ -19,10 +19,10 @@ sonar {
             "sonar.host.url",
             "http://localhost:9000/",
         )
-        property(
-            "sonar.token",
-            System.getProperty("sonarToken").toString(),
-        )
+//        property(
+//            "sonar.token",
+//            System.getProperty("sonarToken").toString(),
+//        )
         property(
             "sonar.coverage.jacoco.xmlReportPaths",
             "${rootProject.projectDir}/app/build/reports/jacoco/debug/jacoco.xml",
