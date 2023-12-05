@@ -15,5 +15,19 @@ sonar {
     properties {
         property("sonar.projectKey", "Kweku-A_ScrumExams_AYw6BGArqsL00adsOdul")
         property("sonar.projectName", "ScrumExams")
+        property(
+            "sonar.host.url",
+            "http://localhost:9000/",
+        )
+        property(
+            "sonar.token",
+            System.getProperty("sonarToken").toString(),
+        )
+        property(
+            "sonar.coverage.jacoco.xmlReportPaths",
+            "${rootProject.projectDir}/app/build/reports/jacoco/debug/jacoco.xml",
+        )
+        property("sonar.skipCompile", false)
+        property("sonar.gradle.skipCompile", false)
     }
 }
