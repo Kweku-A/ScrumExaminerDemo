@@ -7,5 +7,13 @@ plugins {
     alias(libs.plugins.androidTest) apply false
     alias(libs.plugins.hiltPlugin) apply false
     alias(libs.plugins.kspPlugin) apply false
+    id("org.sonarqube") version "4.2.1.3168"
 }
 true // Needed to make the Suppress annotation work for the plugins block
+
+sonar {
+    properties {
+        property("sonar.projectKey", "Kweku-A_ScrumExams_AYw6BGArqsL00adsOdul")
+        property("sonar.projectName", "ScrumExams")
+    }
+}
