@@ -3,6 +3,7 @@ package com.kweku.armah.psm.presentation.viewmodels
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.kweku.armah.core.domain.IODispatcher
 import com.kweku.armah.core.domain.model.Answer
 import com.kweku.armah.core.domain.model.Question
 import com.kweku.armah.core.domain.repository.QuizQuestionsRepository
@@ -14,7 +15,7 @@ import com.kweku.armah.core.presentation.data.AnswerUi
 import com.kweku.armah.core.presentation.data.QuestionsUi
 import com.kweku.armah.psm.domain.ProfessionalScrumMaster
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
@@ -28,6 +29,7 @@ class PsmQuizScreenViewModel @Inject constructor(
     private val getCurrentQuizTimeLeftUseCase: GetCurrentQuizTimeLeftUseCase,
     private val updateQuizWithSelectedAnswersUseCase: UpdateQuizWithSelectedAnswersUseCase,
     @ProfessionalScrumMaster private val quizQuestionsRepository: QuizQuestionsRepository,
+    @IODispatcher private val dispatcher: CoroutineDispatcher,
 
 ) :
     ViewModel() {
@@ -49,7 +51,7 @@ class PsmQuizScreenViewModel @Inject constructor(
     val quizQuestionsStateFlow = _quizQuestionsStateFlow.asStateFlow()
 
     private fun getQuestions() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(dispatcher) {
             listOfQuestions =
                 getQuizUseCase(quizQuestionsRepository = quizQuestionsRepository).map { question ->
                     QuestionsUi(
@@ -85,7 +87,7 @@ class PsmQuizScreenViewModel @Inject constructor(
                 Answer(data = it.data)
             },
         )
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(dispatcher) {
             updateQuizWithSelectedAnswersUseCase(
                 quizQuestionsRepository = quizQuestionsRepository,
                 question = question,
@@ -94,13 +96,13 @@ class PsmQuizScreenViewModel @Inject constructor(
     }
 
     fun setQuizStateOnOff(shouldReview: Boolean) {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(dispatcher) {
             setQuizOnOffUseCase(isActive = !shouldReview)
         }
     }
 
     private fun getTimeLeft() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(dispatcher) {
             getCurrentQuizTimeLeftUseCase().collectLatest {
                 val left = String.format(
                     "%02d: %02d",
