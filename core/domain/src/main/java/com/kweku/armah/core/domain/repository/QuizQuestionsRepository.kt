@@ -6,6 +6,6 @@ interface QuizQuestionsRepository {
     suspend fun saveSelectedQuizQuestionsToDatabase(quizQuestions: List<Question>)
 
     suspend fun deleteAllQuiz()
-    fun updateQuizWithSelectedAnswers(question: Question)
-    fun getQuiz(): List<Question>
+    suspend fun updateQuizWithSelectedAnswers(question: Question)
+    suspend fun getQuiz(): List<Question>
 }

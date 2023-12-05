@@ -32,7 +32,7 @@ class PspoQuizQuestionsRepositoryImpl @Inject constructor(
         pspoQuizDao.insertAll(quizEntities)
     }
 
-    override fun getQuiz(): List<Question> {
+    override suspend fun getQuiz(): List<Question> {
         return pspoQuizDao.getAll().map { quizEntity ->
             Question(
                 id = quizEntity.id,
@@ -54,7 +54,7 @@ class PspoQuizQuestionsRepositoryImpl @Inject constructor(
         pspoQuizDao.deleteAll()
     }
 
-    override fun updateQuizWithSelectedAnswers(question: Question) {
+    override suspend fun updateQuizWithSelectedAnswers(question: Question) {
         val pspoQuizEntity = PspoQuizEntity(
             id = question.id,
             question = question.question,

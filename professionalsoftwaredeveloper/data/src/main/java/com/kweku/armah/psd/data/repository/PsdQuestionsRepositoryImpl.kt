@@ -60,7 +60,7 @@ class PsdQuestionsRepositoryImpl @Inject constructor(private val psdQuestionsDao
 
         return selectedEightyQuestions.toList().map { questionEntity ->
             Question(
-                id=questionEntity.id,
+                id = questionEntity.id,
                 question = questionEntity.question,
                 answers = questionEntity.answers.map {
                     Answer(data = it.data)

@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 class GetQuizUseCase @Inject constructor() {
 
-    operator fun invoke(quizQuestionsRepository: QuizQuestionsRepository): List<Question> {
+    suspend operator fun invoke(quizQuestionsRepository: QuizQuestionsRepository): List<Question> {
         return quizQuestionsRepository.getQuiz()
     }
 }

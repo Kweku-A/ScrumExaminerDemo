@@ -2,13 +2,11 @@ package com.kweku.armah.psm.presentation.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.kweku.armah.core.domain.IODispatcher
 import com.kweku.armah.core.domain.repository.QuestionsRepository
 import com.kweku.armah.core.domain.usecase.InsertAllQuestionsIntoDatabaseUseCase
 import com.kweku.armah.core.domain.usecase.LoadQuestionsFromFileToDatabase
 import com.kweku.armah.psm.domain.ProfessionalScrumMaster
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -17,12 +15,11 @@ class PsmIntroViewModel @Inject constructor(
     private val loadQuestionsFromFileToDatabase: LoadQuestionsFromFileToDatabase,
     private val insertAllQuestionsIntoDatabaseUseCase: InsertAllQuestionsIntoDatabaseUseCase,
     @ProfessionalScrumMaster private val questionsRepository: QuestionsRepository,
-    @IODispatcher private val dispatcher: CoroutineDispatcher,
 ) :
     ViewModel() {
 
     init {
-        viewModelScope.launch(dispatcher) {
+        viewModelScope.launch {
             val questionsGroup =
                 loadQuestionsFromFileToDatabase(com.kweku.armah.resources.R.raw.psm)
             insertAllQuestionsIntoDatabaseUseCase(

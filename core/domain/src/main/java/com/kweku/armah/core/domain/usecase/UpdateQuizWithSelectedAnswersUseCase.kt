@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 class UpdateQuizWithSelectedAnswersUseCase @Inject constructor() {
 
-    operator fun invoke(
+    suspend operator fun invoke(
         quizQuestionsRepository: QuizQuestionsRepository,
         question: Question,
     ) {

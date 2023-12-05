@@ -8,7 +8,7 @@ import javax.inject.Inject
 class FakeFileHelperImpl @Inject constructor() :
     FileHelper {
 
-    override fun getQuestionsFromFile(resourceId: Int): List<Question> {
+    override suspend fun getQuestionsFromFile(resourceId: Int): List<Question> {
         return fakeListOfQuestions
     }
 

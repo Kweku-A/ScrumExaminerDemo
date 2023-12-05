@@ -33,7 +33,7 @@ class PsdQuizQuestionsRepositoryImpl @Inject constructor(
         psdQuizDao.insertAll(quizEntities)
     }
 
-    override fun getQuiz(): List<Question> {
+    override suspend fun getQuiz(): List<Question> {
         return psdQuizDao.getAll().map { quizEntity ->
             Question(
                 id = quizEntity.id,
@@ -55,7 +55,7 @@ class PsdQuizQuestionsRepositoryImpl @Inject constructor(
         psdQuizDao.deleteAll()
     }
 
-    override fun updateQuizWithSelectedAnswers(question: Question) {
+    override suspend fun updateQuizWithSelectedAnswers(question: Question) {
         val psdQuizEntity = PsdQuizEntity(
             id = question.id,
             question = question.question,
