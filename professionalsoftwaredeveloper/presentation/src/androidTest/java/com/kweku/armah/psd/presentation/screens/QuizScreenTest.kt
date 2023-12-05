@@ -36,7 +36,7 @@ class QuizScreenTest {
                 Scaffold(modifier = Modifier.semantics { testTagsAsResourceId = true }) {
                     it.calculateBottomPadding()
                     PsdQuizScreen(
-                        timeLeft = timeLeft.value,
+                        timeLeft = { timeLeft.value },
                         shouldReview = false,
                         listOfQuestions = listOf(),
                         setSelectedAnswers = { _, _ -> },
