@@ -58,18 +58,20 @@ dependencies {
     implementation(libs.material3)
     implementation(libs.androidx.foundation)
     implementation(libs.androidx.uiautomator)
+    implementation(libs.androidx.material.icons.extended)
+    implementation(platform(libs.kotlin.bom))
+    implementation(libs.hilt.android)
+
     testImplementation(libs.junit)
+
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
     androidTestImplementation(platform(libs.compose.bom))
     androidTestImplementation(libs.ui.test.junit4)
+
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
 
-    implementation(libs.androidx.material.icons.extended)
-    implementation(platform(libs.kotlin.bom))
-
-    implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
 }
 

@@ -42,29 +42,32 @@ import com.kweku.armah.core.presentation.composables.multiplechoice.MultipleAnsw
 import com.kweku.armah.core.presentation.composables.multiplechoice.SingleAnswerSelection
 import com.kweku.armah.core.presentation.data.AnswerUi
 import com.kweku.armah.core.presentation.data.QuestionsUi
-import com.kweku.armah.core.presentation.data.fakes.fakeListOfQuestions
 import com.kweku.armah.resources.R
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
+
+data class QuizScreenData(
+    val questionsCount: Int = 0,
+    val shouldReview: Boolean = false,
+    val listOfQuestions: List<QuestionsUi> = emptyList(),
+    val timeLeft: () -> String = { "00:00" },
+)
 
 @Composable
 @OptIn(ExperimentalFoundationApi::class)
 fun QuizScreenBody(
     modifier: Modifier = Modifier,
-    questionsCount: Int = 0,
     pagerState: PagerState = rememberPagerState { 0 },
-    shouldReview: Boolean = false,
-    timeLeft: () -> String = { "00:00" },
-    listOfQuestions: List<QuestionsUi> = emptyList(),
     selectedAnswers: (List<AnswerUi>) -> Unit = {},
     navigateToHome: () -> Unit = {},
     onFinishQuiz: () -> Unit = {},
-    coroutineScope: CoroutineScope = rememberCoroutineScope(),
+    quizScreenData: QuizScreenData,
 ) {
+    val coroutineScope: CoroutineScope = rememberCoroutineScope()
     Column(modifier = modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
         QuizTimer(
-            shouldReview = shouldReview,
-            timeLeft = timeLeft,
+            shouldReview = quizScreenData.shouldReview,
+            timeLeft = quizScreenData.timeLeft,
             modifier = Modifier
                 .align(alignment = Alignment.End)
                 .padding(bottom = 10.dp, end = 10.dp),
@@ -80,7 +83,7 @@ fun QuizScreenBody(
             userScrollEnabled = false,
         ) { count ->
 
-            val questionItem = listOfQuestions[count]
+            val questionItem = quizScreenData.listOfQuestions[count]
             val questionNumber = count + 1
 
             LazyColumn(
@@ -112,19 +115,7 @@ fun QuizScreenBody(
                         color = MaterialTheme.colorScheme.primary.copy(alpha = 0.1f),
                         modifier = Modifier.fillMaxWidth().defaultMinSize(minHeight = 450.dp),
                     ) {
-                        if (questionItem.correctAnswers.size > 1) {
-                            MultipleAnswersSelection(
-                                shouldReview = shouldReview,
-                                questionItem = questionItem,
-                                selectedAnswers = selectedAnswers,
-                            )
-                        } else {
-                            SingleAnswerSelection(
-                                shouldReview = shouldReview,
-                                questionItem = questionItem,
-                                selectedAnswers = selectedAnswers,
-                            )
-                        }
+                        AnswerSelectionType(questionItem, quizScreenData, selectedAnswers)
                     }
                 }
             }
@@ -135,7 +126,7 @@ fun QuizScreenBody(
         }
 
         val shouldDisableNextButton: () -> Boolean = {
-            pagerState.currentPage != questionsCount - 1
+            pagerState.currentPage != quizScreenData.questionsCount - 1
         }
 
         var isFinishDialogShown by remember {
@@ -153,8 +144,9 @@ fun QuizScreenBody(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier.padding(horizontal = 10.dp),
             ) {
-                val onClick = if (shouldReview) navigateToHome else onFinishQuizClicked
-                val endQuizOrReviewText = if (shouldReview) {
+                val onClick =
+                    if (quizScreenData.shouldReview) navigateToHome else onFinishQuizClicked
+                val endQuizOrReviewText = if (quizScreenData.shouldReview) {
                     stringResource(R.string.end_review)
                 } else {
                     stringResource(
@@ -222,6 +214,27 @@ fun QuizScreenBody(
 }
 
 @Composable
+private fun AnswerSelectionType(
+    questionItem: QuestionsUi,
+    quizScreenData: QuizScreenData,
+    selectedAnswers: (List<AnswerUi>) -> Unit,
+) {
+    if (questionItem.correctAnswers.size > 1) {
+        MultipleAnswersSelection(
+            shouldReview = quizScreenData.shouldReview,
+            questionItem = questionItem,
+            selectedAnswers = selectedAnswers,
+        )
+    } else {
+        SingleAnswerSelection(
+            shouldReview = quizScreenData.shouldReview,
+            questionItem = questionItem,
+            selectedAnswers = selectedAnswers,
+        )
+    }
+}
+
+@Composable
 private fun QuizTimer(
     shouldReview: Boolean,
     timeLeft: () -> String,
@@ -255,8 +268,7 @@ fun QuizBodyPreview() {
     MaterialTheme {
         Surface(color = Color.White) {
             QuizScreenBody(
-                listOfQuestions = fakeListOfQuestions,
-                questionsCount = fakeListOfQuestions.size,
+                quizScreenData = QuizScreenData(),
             )
         }
     }

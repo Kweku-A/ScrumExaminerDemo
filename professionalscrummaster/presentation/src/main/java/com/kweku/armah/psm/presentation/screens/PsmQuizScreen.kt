@@ -6,13 +6,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.kweku.armah.core.presentation.composables.QuizScreenBody
+import com.kweku.armah.core.presentation.composables.QuizScreenData
 import com.kweku.armah.core.presentation.data.AnswerUi
 import com.kweku.armah.core.presentation.data.QuestionsUi
 import com.kweku.armah.psm.presentation.viewmodels.PsmQuizScreenViewModel
@@ -66,7 +66,6 @@ fun PsmQuizScreen(
         // provide pageCount
         listOfQuestions.size
     }
-    val coroutineScope = rememberCoroutineScope()
 
     val selectedAnswers: (List<AnswerUi>) -> Unit = {
         setSelectedAnswers(it, pagerState.currentPage)
@@ -75,14 +74,15 @@ fun PsmQuizScreen(
     QuizScreenBody(
         modifier = modifier,
         pagerState = pagerState,
-        questionsCount = listOfQuestions.size,
-        shouldReview = shouldReview,
-        timeLeft = timeLeft,
-        listOfQuestions = listOfQuestions,
+        quizScreenData = QuizScreenData(
+            questionsCount = listOfQuestions.size,
+            shouldReview = shouldReview,
+            timeLeft = timeLeft,
+            listOfQuestions = listOfQuestions,
+        ),
         selectedAnswers = selectedAnswers,
         navigateToHome = navigateToHome,
         onFinishQuiz = onFinishQuiz,
-        coroutineScope = coroutineScope,
     )
 }
 

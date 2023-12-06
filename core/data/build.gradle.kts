@@ -37,7 +37,6 @@ android {
 }
 
 dependencies {
-
     implementation(project(":professionalsoftwaredeveloper:data"))
     implementation(project(":professionalscrummaster:data"))
     implementation(project(":professionalscrumproductowner:data"))
@@ -50,16 +49,17 @@ dependencies {
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
     implementation(libs.material)
-    testImplementation(libs.junit)
     implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
     implementation(libs.androidx.datastore.preferences)
     implementation(libs.gson)
-
     implementation(libs.androidx.room.runtime)
-    annotationProcessor(libs.androidx.room.compiler)
-    ksp(libs.androidx.room.compiler)
     implementation(libs.androidx.room.ktx)
+}
+
+dependencies {
+    annotationProcessor(libs.androidx.room.compiler)
+    kapt(libs.hilt.compiler)
+    ksp(libs.androidx.room.compiler)
 }
 
 dependencies {
@@ -69,6 +69,7 @@ dependencies {
 
 dependencies {
     testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.junit)
 }
 
 ksp {
