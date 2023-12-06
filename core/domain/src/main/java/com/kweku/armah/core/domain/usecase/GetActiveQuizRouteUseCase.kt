@@ -6,12 +6,12 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
-class IsAnyQuizOngoingUseCase @Inject constructor(
+class GetActiveQuizRouteUseCase @Inject constructor(
     private val appPreferenceDataStore: AppPreferenceDataStore,
 ) {
 
-    operator fun invoke(): Flow<Boolean> =
-        appPreferenceDataStore.getDataStore(key = PreferenceKeys.isQuizActive).map {
-            it ?: false
+    operator fun invoke(): Flow<String> =
+        appPreferenceDataStore.getDataStore(key = PreferenceKeys.activeQuizRoute).map {
+            it.orEmpty()
         }
 }

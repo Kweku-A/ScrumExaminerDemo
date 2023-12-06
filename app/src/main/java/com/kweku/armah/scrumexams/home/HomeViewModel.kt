@@ -5,31 +5,42 @@ import androidx.lifecycle.viewModelScope
 import com.kweku.armah.core.domain.repository.QuizQuestionsRepository
 import com.kweku.armah.core.domain.usecase.DeleteQuizUseCase
 import com.kweku.armah.core.domain.usecase.IsAnyQuizOngoingUseCase
-import com.kweku.armah.core.domain.usecase.SetQuizOnOffUseCase
 import com.kweku.armah.psd.domain.ProfessionalScrumDeveloper
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    isAnyQuizOngoingUseCase: IsAnyQuizOngoingUseCase,
-    private val setQuizOnOffUseCase: SetQuizOnOffUseCase,
+    private val isAnyQuizOngoingUseCase: IsAnyQuizOngoingUseCase,
     private val deleteQuizUseCase: DeleteQuizUseCase,
     @ProfessionalScrumDeveloper private val quizQuestionsRepository: QuizQuestionsRepository,
 ) :
     ViewModel() {
 
-    val isQuizOnGoing: StateFlow<Boolean> =
-        isAnyQuizOngoingUseCase().stateIn(viewModelScope, SharingStarted.Eagerly, false)
+    private val _homeState =
+        MutableStateFlow(HomeState(isLoading = true, isQuizOnGoing = false))
+    val homeState: StateFlow<HomeState> = _homeState
 
-    fun deleteAllQuiz() {
+    private fun getQuizState() {
         viewModelScope.launch {
-            setQuizOnOffUseCase(isActive = false)
-            deleteQuizUseCase(quizQuestionsRepository = quizQuestionsRepository)
+            val isActiveQuiz = isAnyQuizOngoingUseCase().first()
+            if (!isActiveQuiz) {
+                deleteQuizUseCase(quizQuestionsRepository = quizQuestionsRepository)
+            }
+            _homeState.update {
+                it.copy(isLoading = false, isQuizOnGoing = isActiveQuiz)
+            }
         }
     }
+
+    init {
+        getQuizState()
+    }
 }
+
+data class HomeState(val isLoading: Boolean = false, val isQuizOnGoing: Boolean = false)

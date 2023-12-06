@@ -1,14 +1,20 @@
 package com.kweku.armah.pspo.data.repository
 
+import com.kweku.armah.core.domain.IODispatcher
 import com.kweku.armah.core.domain.model.Answer
 import com.kweku.armah.core.domain.model.Question
 import com.kweku.armah.core.domain.repository.QuestionsRepository
 import com.kweku.armah.pspo.data.database.dao.PspoQuestionsDao
 import com.kweku.armah.pspo.data.database.enitities.PspoQuestionEntity
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 import kotlin.random.Random
 
-class PspoQuestionsRepositoryImpl @Inject constructor(private val pspoQuestionsDao: PspoQuestionsDao) :
+class PspoQuestionsRepositoryImpl @Inject constructor(
+    private val pspoQuestionsDao: PspoQuestionsDao,
+    @IODispatcher private val dispatcher: CoroutineDispatcher,
+) :
     QuestionsRepository {
 
     override fun getQuestionsFromDatabase(): List<Question> {
@@ -50,26 +56,29 @@ class PspoQuestionsRepositoryImpl @Inject constructor(private val pspoQuestionsD
     }
 
     override suspend fun selectRandomQuestions(numberOfQuestions: Int): List<Question> {
-        val questions: MutableList<PspoQuestionEntity> = pspoQuestionsDao.getAll().toMutableList()
-        val selectedEightyQuestions: MutableSet<PspoQuestionEntity> = mutableSetOf()
+        return withContext(dispatcher) {
+            val questions: MutableList<PspoQuestionEntity> =
+                pspoQuestionsDao.getAll().toMutableList()
+            val selectedEightyQuestions: MutableSet<PspoQuestionEntity> = mutableSetOf()
 
-        while (selectedEightyQuestions.size < numberOfQuestions) {
-            val index: Int = Random.nextInt(questions.size)
-            selectedEightyQuestions.add(questions.removeAt(index))
-        }
+            while (selectedEightyQuestions.size < numberOfQuestions) {
+                val index: Int = Random.nextInt(questions.size)
+                selectedEightyQuestions.add(questions.removeAt(index))
+            }
 
-        return selectedEightyQuestions.toList().map { questionEntity ->
-            Question(
-                id = questionEntity.id,
-                question = questionEntity.question,
-                answers = questionEntity.answers.map {
-                    Answer(data = it.data)
-                },
-                correctAnswers = questionEntity.correctAnswers.map {
-                    Answer(data = it.data)
-                },
-                selectedAnswers = emptyList(),
-            )
+            selectedEightyQuestions.toList().map { questionEntity ->
+                Question(
+                    id = questionEntity.id,
+                    question = questionEntity.question,
+                    answers = questionEntity.answers.map {
+                        Answer(data = it.data)
+                    },
+                    correctAnswers = questionEntity.correctAnswers.map {
+                        Answer(data = it.data)
+                    },
+                    selectedAnswers = emptyList(),
+                )
+            }
         }
     }
 }

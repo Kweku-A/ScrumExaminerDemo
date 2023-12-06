@@ -1,7 +1,10 @@
 package com.kweku.armah.scrumexams.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.kweku.armah.psd.presentation.navigation.ProfessionalScrumDeveloperDestinations
@@ -26,39 +29,47 @@ import com.kweku.armah.scrumexams.home.enums.HomeButtons
 @Composable
 fun AppNavHost(modifier: Modifier = Modifier) {
     val navController = rememberNavController()
+    val navHostViewModel: NavHostViewModel = hiltViewModel()
     val startDestination = HomeDestinations.HomeScreenDestination.toString()
 
-    val navigateTo: (String) -> Unit = { route ->
-        navController.navigate(route)
+    val navigateToDestinationAndClearStack: (String) -> Unit = { route ->
+        navController.navigate(route) {
+            popUpTo(navController.graph.id) {
+                inclusive = true
+            }
+        }
     }
+
+    val activeRoute by navHostViewModel.activeQuizRoute.collectAsStateWithLifecycle()
 
     NavHost(
         navController = navController,
         startDestination = startDestination,
         modifier = modifier,
     ) {
-        addHomeScreenRoute(navigateTo = {
-            val destination = when (it) {
-                is HomeButtons.PSM -> {
-                    ProfessionalScrumMasterDestinations.PSMIntroScreenDestination.toString()
-                }
+        addHomeScreenRoute(
+            navigateTo = {
+                val destination = when (it) {
+                    is HomeButtons.PSM -> {
+                        ProfessionalScrumMasterDestinations.PSMIntroScreenDestination.toString()
+                    }
 
-                is HomeButtons.PSD -> {
-                    ProfessionalScrumDeveloperDestinations.PSDIntroScreenDestination.toString()
-                }
+                    is HomeButtons.PSD -> {
+                        ProfessionalScrumDeveloperDestinations.PSDIntroScreenDestination.toString()
+                    }
 
-                is HomeButtons.PSPO -> {
-                    ProfessionalScrumProductOwnerDestinations.PSPOIntroScreenDestination.toString()
+                    is HomeButtons.PSPO -> {
+                        ProfessionalScrumProductOwnerDestinations.PSPOIntroScreenDestination.toString()
+                    }
                 }
-            }
-            navController.navigate(destination)
-        }, navigateToQuiz = {
-            navController.navigate(ProfessionalScrumDeveloperDestinations.PSDQuizScreenDestination.toString()) {
-                popUpTo(navController.graph.id) {
-                    inclusive = true
+                navController.navigate(destination)
+            },
+            navigateToActiveQuiz = {
+                if (activeRoute.isNotEmpty()) {
+                    navigateToDestinationAndClearStack(activeRoute)
                 }
-            }
-        })
+            },
+        )
 
         addPSDIntroScreenRoute(navigateTo = {
             navController.navigate(ProfessionalScrumDeveloperDestinations.PSDReadyToStartScreenDestination.toString())
@@ -67,36 +78,25 @@ fun AppNavHost(modifier: Modifier = Modifier) {
         })
 
         addPSDReadyToStartScreenRoute(navigateTo = {
-            navController.navigate(ProfessionalScrumDeveloperDestinations.PSDQuizScreenDestination.toString()) {
-                popUpTo(navController.graph.id) {
-                    inclusive = true
-                }
-            }
+            navHostViewModel.setActiveQuizState(
+                isActive = true,
+                route = ProfessionalScrumDeveloperDestinations.PSDQuizScreenDestination.toString(),
+            )
+            navigateToDestinationAndClearStack(ProfessionalScrumDeveloperDestinations.PSDQuizScreenDestination.toString())
         })
 
         addPSDQuizScreenRoute(onFinishQuiz = {
-            navController.navigate(ProfessionalScrumDeveloperDestinations.PSDResultScreenDestination.toString()) {
-                popUpTo(navController.graph.id) {
-                    inclusive = true
-                }
-            }
+            navHostViewModel.setActiveQuizState(isActive = false)
+            navigateToDestinationAndClearStack(ProfessionalScrumDeveloperDestinations.PSDResultScreenDestination.toString())
         }, navigateToHome = {
-            navController.navigate(HomeDestinations.HomeScreenDestination.toString()) {
-                popUpTo(navController.graph.id) {
-                    inclusive = true
-                }
-            }
+            navigateToDestinationAndClearStack(startDestination)
         })
 
         addPSDResultsScreenRoute(navigateToReview = {
             // navigate back to questions for review
             navController.navigate("${ProfessionalScrumDeveloperDestinations.PSDQuizScreenDestination}/true")
         }, navigateToHome = {
-            navController.navigate(HomeDestinations.HomeScreenDestination.toString()) {
-                popUpTo(navController.graph.id) {
-                    inclusive = true
-                }
-            }
+            navigateToDestinationAndClearStack(startDestination)
         })
 
         // PSM
@@ -108,36 +108,25 @@ fun AppNavHost(modifier: Modifier = Modifier) {
         })
 
         addPSMReadyToStartScreenRoute(navigateTo = {
-            navController.navigate(ProfessionalScrumMasterDestinations.PSMQuizScreenDestination.toString()) {
-                popUpTo(navController.graph.id) {
-                    inclusive = true
-                }
-            }
+            navHostViewModel.setActiveQuizState(
+                isActive = true,
+                route = ProfessionalScrumMasterDestinations.PSMQuizScreenDestination.toString(),
+            )
+            navigateToDestinationAndClearStack(ProfessionalScrumMasterDestinations.PSMQuizScreenDestination.toString())
         })
 
         addPSMQuizScreenRoute(onFinishQuiz = {
-            navController.navigate(ProfessionalScrumMasterDestinations.PSMResultScreenDestination.toString()) {
-                popUpTo(navController.graph.id) {
-                    inclusive = true
-                }
-            }
+            navHostViewModel.setActiveQuizState(false)
+            navigateToDestinationAndClearStack(ProfessionalScrumMasterDestinations.PSMResultScreenDestination.toString())
         }, navigateToHome = {
-            navController.navigate(HomeDestinations.HomeScreenDestination.toString()) {
-                popUpTo(navController.graph.id) {
-                    inclusive = true
-                }
-            }
+            navigateToDestinationAndClearStack(startDestination)
         })
 
         addPSMResultsScreenRoute(navigateToReview = {
             // navigate back to questions for review
             navController.navigate("${ProfessionalScrumMasterDestinations.PSMQuizScreenDestination}/true")
         }, navigateToHome = {
-            navController.navigate(HomeDestinations.HomeScreenDestination.toString()) {
-                popUpTo(navController.graph.id) {
-                    inclusive = true
-                }
-            }
+            navigateToDestinationAndClearStack(startDestination)
         })
 
         // PSPO
@@ -149,36 +138,25 @@ fun AppNavHost(modifier: Modifier = Modifier) {
         })
 
         addPSPOReadyToStartScreenRoute(navigateTo = {
-            navController.navigate(ProfessionalScrumProductOwnerDestinations.PSPOQuizScreenDestination.toString()) {
-                popUpTo(navController.graph.id) {
-                    inclusive = true
-                }
-            }
+            navHostViewModel.setActiveQuizState(
+                isActive = true,
+                route = ProfessionalScrumProductOwnerDestinations.PSPOQuizScreenDestination.toString(),
+            )
+            navigateToDestinationAndClearStack(ProfessionalScrumProductOwnerDestinations.PSPOQuizScreenDestination.toString())
         })
 
         addPSPOQuizScreenRoute(onFinishQuiz = {
-            navController.navigate(ProfessionalScrumProductOwnerDestinations.PSPOResultScreenDestination.toString()) {
-                popUpTo(navController.graph.id) {
-                    inclusive = true
-                }
-            }
+            navHostViewModel.setActiveQuizState(false)
+            navigateToDestinationAndClearStack(ProfessionalScrumProductOwnerDestinations.PSPOResultScreenDestination.toString())
         }, navigateToHome = {
-            navController.navigate(HomeDestinations.HomeScreenDestination.toString()) {
-                popUpTo(navController.graph.id) {
-                    inclusive = true
-                }
-            }
+            navigateToDestinationAndClearStack(startDestination)
         })
 
         addPSPOResultsScreenRoute(navigateToReview = {
             // navigate back to questions for review
             navController.navigate("${ProfessionalScrumProductOwnerDestinations.PSPOQuizScreenDestination}/true")
         }, navigateToHome = {
-            navController.navigate(HomeDestinations.HomeScreenDestination.toString()) {
-                popUpTo(navController.graph.id) {
-                    inclusive = true
-                }
-            }
+            navigateToDestinationAndClearStack(startDestination)
         })
     }
 }

@@ -2,6 +2,7 @@ package com.kweku.armah.scrumexams.home
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -13,6 +14,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Card
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -34,20 +36,25 @@ import com.kweku.armah.scrumexams.home.enums.HomeButtons
 @Composable
 fun HomeScreenRoute(
     navigateTo: (HomeButtons) -> Unit,
-    navigateToQuiz: () -> Unit,
-    viewModel: HomeViewModel = hiltViewModel(),
+    navigateToActiveQuiz: () -> Unit,
 ) {
-    val isQuizOnGoing by viewModel.isQuizOnGoing.collectAsStateWithLifecycle()
+    val homeViewModel: HomeViewModel = hiltViewModel()
+    val appStartState by homeViewModel.homeState.collectAsStateWithLifecycle()
 
-    if (!isQuizOnGoing) {
-        viewModel.deleteAllQuiz()
+    if (appStartState.isLoading) {
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center,
+        ) {
+            CircularProgressIndicator()
+        }
+    } else {
+        HomeScreen(
+            isQuizOnGoing = appStartState.isQuizOnGoing,
+            navigateTo = navigateTo,
+            navigateToQuiz = navigateToActiveQuiz,
+        )
     }
-
-    HomeScreen(
-        isQuizOnGoing = isQuizOnGoing,
-        navigateTo = navigateTo,
-        navigateToQuiz = navigateToQuiz,
-    )
 }
 
 @OptIn(ExperimentalMaterial3Api::class)

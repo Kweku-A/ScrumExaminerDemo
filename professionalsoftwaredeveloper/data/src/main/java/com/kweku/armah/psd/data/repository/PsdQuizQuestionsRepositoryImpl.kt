@@ -1,17 +1,20 @@
 package com.kweku.armah.psd.data.repository
 
+import com.kweku.armah.core.domain.IODispatcher
 import com.kweku.armah.core.domain.model.Answer
 import com.kweku.armah.core.domain.model.Question
 import com.kweku.armah.core.domain.repository.QuizQuestionsRepository
 import com.kweku.armah.psd.data.database.dao.PsdQuizDao
 import com.kweku.armah.psd.data.database.enitities.PsdQuizEntity
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 // Based on SRP, this can be split into two separate repositories
 // i.e. QuizRepository and QuestionsRepository but keeping it as such for now
 class PsdQuizQuestionsRepositoryImpl @Inject constructor(
     private val psdQuizDao: PsdQuizDao,
-
+    @IODispatcher private val dispatcher: CoroutineDispatcher,
 ) :
     QuizQuestionsRepository {
 
@@ -34,20 +37,22 @@ class PsdQuizQuestionsRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getQuiz(): List<Question> {
-        return psdQuizDao.getAll().map { quizEntity ->
-            Question(
-                id = quizEntity.id,
-                question = quizEntity.question,
-                answers = quizEntity.answers.map {
-                    Answer(data = it.data)
-                },
-                correctAnswers = quizEntity.correctAnswers.map {
-                    Answer(data = it.data)
-                },
-                selectedAnswers = quizEntity.selectedAnswers.map {
-                    Answer(data = it.data)
-                },
-            )
+        return withContext(dispatcher) {
+            psdQuizDao.getAll().map { quizEntity ->
+                Question(
+                    id = quizEntity.id,
+                    question = quizEntity.question,
+                    answers = quizEntity.answers.map {
+                        Answer(data = it.data)
+                    },
+                    correctAnswers = quizEntity.correctAnswers.map {
+                        Answer(data = it.data)
+                    },
+                    selectedAnswers = quizEntity.selectedAnswers.map {
+                        Answer(data = it.data)
+                    },
+                )
+            }
         }
     }
 
@@ -69,9 +74,11 @@ class PsdQuizQuestionsRepositoryImpl @Inject constructor(
                 Answer(data = it.data)
             },
         )
-        psdQuizDao.updateQuizWithSelectedAnswers(
-            psdQuizEntity.id,
-            psdQuizEntity.selectedAnswers,
-        )
+        withContext(dispatcher) {
+            psdQuizDao.updateQuizWithSelectedAnswers(
+                psdQuizEntity.id,
+                psdQuizEntity.selectedAnswers,
+            )
+        }
     }
 }

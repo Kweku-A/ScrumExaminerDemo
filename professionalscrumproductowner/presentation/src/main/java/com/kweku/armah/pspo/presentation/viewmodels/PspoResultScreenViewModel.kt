@@ -2,7 +2,6 @@ package com.kweku.armah.pspo.presentation.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.kweku.armah.core.domain.IODispatcher
 import com.kweku.armah.core.domain.repository.QuizQuestionsRepository
 import com.kweku.armah.core.domain.usecase.CalculateQuizResultsUseCase
 import com.kweku.armah.core.domain.usecase.DeleteQuizUseCase
@@ -11,7 +10,6 @@ import com.kweku.armah.core.domain.usecase.SetQuizOnOffUseCase
 import com.kweku.armah.core.presentation.data.FinalScoreUi
 import com.kweku.armah.pspo.domain.ProfessionalScrumProductOwner
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -24,7 +22,6 @@ class PspoResultScreenViewModel @Inject constructor(
     private val setQuizOnOffUseCase: SetQuizOnOffUseCase,
     private val getQuizUseCase: GetQuizUseCase,
     @ProfessionalScrumProductOwner private val quizQuestionsRepository: QuizQuestionsRepository,
-    @IODispatcher private val dispatcher: CoroutineDispatcher,
 ) :
     ViewModel() {
 
@@ -32,7 +29,7 @@ class PspoResultScreenViewModel @Inject constructor(
     val finalScoreStateFlow = _finalScoreStateFlow.asStateFlow()
 
     private fun getFinalScore() {
-        viewModelScope.launch(dispatcher) {
+        viewModelScope.launch {
             val quiz = getQuizUseCase(quizQuestionsRepository = quizQuestionsRepository)
             val result = calculateQuizResultsUseCase(quizList = quiz)
             _finalScoreStateFlow.value =
@@ -45,13 +42,13 @@ class PspoResultScreenViewModel @Inject constructor(
     }
 
     fun clearQuiz() {
-        viewModelScope.launch(dispatcher) {
+        viewModelScope.launch {
             deleteQuizUseCase(quizQuestionsRepository = quizQuestionsRepository)
         }
     }
 
     fun resetOnGoingQuizFlag() {
-        viewModelScope.launch(dispatcher) {
+        viewModelScope.launch {
             setQuizOnOffUseCase(isActive = false)
         }
     }
