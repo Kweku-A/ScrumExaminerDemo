@@ -4,7 +4,7 @@ plugins {
     alias(libs.plugins.kotlinAndroid)
     kotlin("kapt")
     alias(libs.plugins.hiltPlugin)
-   alias(libs.plugins.kspPlugin)
+    alias(libs.plugins.kspPlugin)
 }
 
 android {
@@ -102,7 +102,7 @@ dependencies {
     implementation(platform(libs.kotlin.bom))
 
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose")
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.lifecycle.viewmodel.savedstate)
     implementation(libs.androidx.lifecycle.runtime.compose)
 
@@ -113,6 +113,7 @@ dependencies {
 
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
+    implementation(libs.kotlinx.coroutines.test)
 }
 
 kotlin {
