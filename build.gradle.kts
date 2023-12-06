@@ -7,7 +7,7 @@ plugins {
     alias(libs.plugins.androidTest) apply false
     alias(libs.plugins.hiltPlugin) apply false
     alias(libs.plugins.kspPlugin) apply false
-    id("org.sonarqube") version "4.2.1.3168"
+    alias(libs.plugins.sonarqubeGradlePlugin)
 }
 true // Needed to make the Suppress annotation work for the plugins block
 

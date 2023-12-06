@@ -72,7 +72,6 @@ material3 = { group = "androidx.compose.material3", name = "material3" }
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 androidx-uiautomator = { group = "androidx.test.uiautomator", name = "uiautomator", version.ref = "uiautomator" }
-sonarqube-gradle-plugin = { module = "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin", version.ref = "sonarqube-gradle-plugin" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
@@ -81,6 +80,7 @@ androidLibrary = { id = "com.android.library", version.ref = "agp" }
 androidTest = { id = "com.android.test", version.ref = "agp" }
 hiltPlugin = { id = "com.google.dagger.hilt.android", version.ref = "hilt-android" }
 kspPlugin = { id = "com.google.devtools.ksp", version.ref = "ksp-plugin" }
+sonarqubeGradlePlugin = { id = "org.sonarqube", version.ref = "sonarqube-gradle-plugin" }
 
 [bundles]
 
