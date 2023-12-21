@@ -28,4 +28,4 @@ The app module serves as the starting/connecting point for all features
 ## Note
 - The app is still being developed and will be refactored accordingly
 - Few tests have been added
-- Whatever you don't see is not there :)
+- Whatever you don't see is not added yet :)
