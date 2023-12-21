@@ -7,13 +7,12 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.Card
+import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
@@ -24,11 +23,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.kweku.armah.scrumexams.home.enums.HomeButtons
@@ -41,19 +38,19 @@ fun HomeScreenRoute(
     val homeViewModel: HomeViewModel = hiltViewModel()
     val appStartState by homeViewModel.homeState.collectAsStateWithLifecycle()
 
-    if (appStartState.isLoading) {
-        Box(
-            modifier = Modifier.fillMaxSize(),
-            contentAlignment = Alignment.Center,
-        ) {
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center,
+    ) {
+        if (appStartState.isLoading) {
             CircularProgressIndicator()
+        } else {
+            HomeScreen(
+                isQuizOnGoing = appStartState.isQuizOnGoing,
+                navigateTo = navigateTo,
+                navigateToQuiz = navigateToActiveQuiz,
+            )
         }
-    } else {
-        HomeScreen(
-            isQuizOnGoing = appStartState.isQuizOnGoing,
-            navigateTo = navigateTo,
-            navigateToQuiz = navigateToActiveQuiz,
-        )
     }
 }
 
@@ -66,28 +63,20 @@ private fun HomeScreen(
 ) {
     LazyColumn(
         horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center,
         modifier = Modifier.fillMaxWidth(),
     ) {
         items(listOf(HomeButtons.PSM, HomeButtons.PSD, HomeButtons.PSPO)) {
-            Card(
+            Button(
                 onClick = { navigateTo(it) },
-                shape = RoundedCornerShape(5.dp),
-                modifier = Modifier.fillMaxWidth().padding(10.dp).height(150.dp),
+                modifier = Modifier.fillMaxWidth().padding(10.dp),
             ) {
-                Column(
-                    modifier = Modifier.fillMaxSize(),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center,
-                ) {
-                    Text(
-                        it.toString(),
-                        style = TextStyle(
-                            fontWeight = FontWeight.Black,
-                            fontSize = 24.sp,
-
-                        ),
-                    )
-                }
+                Text(
+                    it.toString(),
+                    style = androidx.compose.ui.text.TextStyle(
+                        fontWeight = FontWeight.Black,
+                    ),
+                )
             }
         }
     }

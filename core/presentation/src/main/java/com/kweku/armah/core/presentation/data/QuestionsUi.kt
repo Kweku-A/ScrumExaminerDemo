@@ -1,8 +1,9 @@
 package com.kweku.armah.core.presentation.data
 
-import javax.annotation.concurrent.Immutable
+import androidx.compose.runtime.Immutable
+import androidx.compose.runtime.Stable
 
-@Immutable
+@Stable
 data class QuestionsUi(
     val id: Int = 0,
     val question: String = "",

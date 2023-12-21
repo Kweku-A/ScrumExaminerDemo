@@ -4,11 +4,10 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.kweku.armah.pspo.presentation.screens.PspoIntroScreenRoute
 import com.kweku.armah.pspo.presentation.screens.QuizScreenRoute
 import com.kweku.armah.pspo.presentation.screens.ReadyToStartScreenRoute
 import com.kweku.armah.pspo.presentation.screens.ResultScreenRoute
-
-import com.kweku.armah.pspo.presentation.screens.PspoIntroScreenRoute
 
 fun NavGraphBuilder.addPSPOIntroScreenRoute(navigateTo: () -> Unit, navigateBack: () -> Unit) {
     composable(route = ProfessionalScrumProductOwnerDestinations.PSPOIntroScreenDestination.toString()) {
