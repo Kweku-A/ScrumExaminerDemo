@@ -14,12 +14,12 @@ import kotlinx.datetime.periodUntil
 import javax.inject.Inject
 
 class GetCurrentQuizTimeLeftUseCase @Inject constructor(
-    private val appPreferenceDataStore: AppPreferenceDataStore,
-) {
+    appPreferenceDataStore: AppPreferenceDataStore,
+) : AppPreferenceDataStore by appPreferenceDataStore {
 
     operator fun invoke(): Flow<QuizTimer> = flow {
         val endTime =
-            appPreferenceDataStore.getDataStore(key = PreferenceKeys.quizEndTime).first() ?: 0L
+            getDataStore(key = PreferenceKeys.quizEndTime).first() ?: 0L
         while (true) {
             val timeLeft = Clock.System.now()
                 .periodUntil(

@@ -7,11 +7,11 @@ import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class GetActiveQuizRouteUseCase @Inject constructor(
-    private val appPreferenceDataStore: AppPreferenceDataStore,
-) {
+    appPreferenceDataStore: AppPreferenceDataStore,
+) : AppPreferenceDataStore by appPreferenceDataStore {
 
     operator fun invoke(): Flow<String> =
-        appPreferenceDataStore.getDataStore(key = PreferenceKeys.activeQuizRoute).map {
+        getDataStore(key = PreferenceKeys.activeQuizRoute).map {
             it.orEmpty()
         }
 }

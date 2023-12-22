@@ -4,10 +4,11 @@ import com.kweku.armah.core.domain.model.PreferenceKeys
 import com.kweku.armah.core.domain.repository.AppPreferenceDataStore
 import javax.inject.Inject
 
-class SetActiveQuizRouteUseCase @Inject constructor(private val appPreferenceDataStore: AppPreferenceDataStore) {
+class SetActiveQuizRouteUseCase @Inject constructor(appPreferenceDataStore: AppPreferenceDataStore) :
+    AppPreferenceDataStore by appPreferenceDataStore {
 
     suspend operator fun invoke(activeQuizRoute: String) {
-        appPreferenceDataStore.updateDataStore(
+        updateDataStore(
             key = PreferenceKeys.activeQuizRoute,
             value = activeQuizRoute,
         )

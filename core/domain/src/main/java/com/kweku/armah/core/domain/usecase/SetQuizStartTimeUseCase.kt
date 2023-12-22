@@ -8,12 +8,12 @@ import javax.inject.Inject
 import kotlin.time.Duration.Companion.minutes
 
 class SetQuizStartTimeUseCase @Inject constructor(
-    private val appPreferenceDataStore: AppPreferenceDataStore,
-) {
+    appPreferenceDataStore: AppPreferenceDataStore,
+) : AppPreferenceDataStore by appPreferenceDataStore {
 
     suspend operator fun invoke() {
         val timeNow = System.now().plus(QUIZ_TIME_IN_MINUTES.minutes)
-        appPreferenceDataStore.updateDataStore(
+        updateDataStore(
             key = PreferenceKeys.quizEndTime,
             value = timeNow.toEpochMilliseconds(),
         )
